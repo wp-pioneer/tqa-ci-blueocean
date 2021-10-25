@@ -19,7 +19,4 @@ pipeline {
     }
 
   }
-  environment {
-    customWorkspace = '\\Games\\RunGame_Main_Test'
-  }
 }
