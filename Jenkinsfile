@@ -14,6 +14,8 @@ pipeline {
 
         bat(script: 'cd', returnStatus: true, returnStdout: true)
         bat(script: 'RunGame_Main_Test.bat', returnStatus: true, returnStdout: true)
+        pwsh 'cd'
+        powershell 'cd'
       }
     }
 
