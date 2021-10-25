@@ -7,7 +7,7 @@ pipeline {
   stages {
     stage('run games') {
       steps {
-        bat 'pushd \\Games\RunGame_Main_Test && RunGame_Main_Test.bat'
+        bat 'pushd \\Games\\RunGame_Main_Test && RunGame_Main_Test.bat'
       }
     }
 
