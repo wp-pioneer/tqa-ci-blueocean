@@ -9,9 +9,12 @@ pipeline {
 
       parallel { 
 
-        stage('run1') {
-          steps {
-            bat 'pushd \\Games\\RunGame_Main_Test && RunGame_Main_Test.bat'
+        stages('run-worker-leo') {
+          agent { label 'worker-leo'}
+          stage('run1') {
+            steps {
+              bat 'pushd \\Games\\RunGame_Main_Test && RunGame_Main_Test.bat'
+            }
           }
           stage('waiting login ui') {
             steps {
