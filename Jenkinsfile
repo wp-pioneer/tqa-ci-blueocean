@@ -12,8 +12,8 @@ pipeline {
           echo 'change current dir'
         }
 
-        bat(script: 'cmd /c dir', returnStatus: true, returnStdout: true)
-        bat(script: 'RunGame_Main_Test.bat', returnStatus: true, returnStdout: true)
+        bat 'cmd /c dir'
+        bat 'RunGame_Main_Test.bat'
         powershell 'cd'
       }
     }
