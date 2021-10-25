@@ -6,9 +6,9 @@ pipeline {
 
   }
   stages {
-    stage('') {
+    stage('error') {
       steps {
-        sh 'notepad'
+        sh 'C:\\Windows\\system32\\notepad.exe'
       }
     }
 
