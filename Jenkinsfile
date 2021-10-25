@@ -3,7 +3,6 @@ pipeline {
     node {
       label 'worker-leo'
     }
-
   }
   stages {
     stage('run games') {
