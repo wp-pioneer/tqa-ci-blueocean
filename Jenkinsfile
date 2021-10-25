@@ -21,19 +21,7 @@ pipeline {
         stage('run2') {
           agent { label 'stella'}
           steps {
-            bat 'pushd \\Games\\RunGame_Main_Test && dir'
-          }
-        }
-
-        stage('run3') {
-          steps {
-            bat 'pushd \\Games\\RunGame_Main_Test'
-          }
-        }
-
-        stage('run4') {
-          steps {
-            bat 'pushd \\Games\\RunGame_Main_Test'
+            echo 'step: run game...'
           }
         }
 
