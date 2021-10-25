@@ -8,7 +8,7 @@ pipeline {
     stage('run games') {
       steps {
         dir(path: '\\Games\\RunGame_Main_Test') {
-          echo 'hello?'
+          echo 'command dir ? and run bat '
           bat 'RunGame_Main_Test.bat'
         }
 
