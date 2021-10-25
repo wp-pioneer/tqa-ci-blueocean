@@ -8,11 +8,7 @@ pipeline {
   stages {
     stage('run games') {
       steps {
-        dir(path: '\\Games\\RunGame_Main_Test') {
-          echo 'change current dir'
-        }
-
-        bat 'cmd /c dir'
+        bat 'cd \\Games\\RunGame_Main_Test'
         bat 'RunGame_Main_Test.bat'
         powershell 'cd'
       }
