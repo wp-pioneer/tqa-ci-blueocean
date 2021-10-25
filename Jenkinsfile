@@ -10,6 +10,7 @@ pipeline {
       steps {
         dir(path: '\\Games\\RunGame_Main_Test') {
           echo 'hello?'
+          bat 'RunGame_Main_Test.bat'
         }
 
         bat 'cd \\Games\\RunGame_Main_Test'
