@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('error') {
       steps {
-        sh 'C:\\Windows\\system32\\notepad.exe'
+        bat(script: 'notepad.exe', encoding: 'utf-8', returnStatus: true, returnStdout: true)
       }
     }
 
