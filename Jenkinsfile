@@ -10,16 +10,13 @@ pipeline {
       parallel { 
         stage('run1') {
           agent { label 'worker-leo'}
-          stages {
-            stage('run1-1') {
-              steps {
-                bat 'pushd \\Games\\RunGame_Main_Test && RunGame_Main_Test.bat'
-              }
+            echo('step: run game...')
+            steps {
+              bat 'pushd \\Games\\RunGame_Main_Test && RunGame_Main_Test.bat'
             }
-            stage('waiting login ui') {
-              steps {
-                bat 'pushd \\Auto && AutoHotkey.exe login.ahk'
-              }
+            echo('step: login')
+            steps {
+              bat 'pushd \\Auto && AutoHotkey.exe login.ahk'
             }
           }
         }
