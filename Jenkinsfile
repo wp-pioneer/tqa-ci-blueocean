@@ -13,6 +13,11 @@ pipeline {
           steps {
             bat 'pushd \\Games\\RunGame_Main_Test && RunGame_Main_Test.bat'
           }
+          stage('waiting login ui') {
+            steps {
+              bat 'pushd \\Auto && AutoHotkey.exe login.ahk'
+            }
+          }
         }
 
         stage('run2') {
