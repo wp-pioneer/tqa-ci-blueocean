@@ -8,8 +8,8 @@ pipeline {
   stages {
     stage('run games') {
       steps {
-        bat(script: 'RunGame_Main_Test.bat', returnStatus: true, returnStdout: true)
         dir(path: '/Games/RunGame_Main_Test')
+        bat(script: 'dir', returnStatus: true, returnStdout: true)
       }
     }
 
