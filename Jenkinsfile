@@ -12,7 +12,7 @@ pipeline {
             echo 'step: run game...'
             bat 'pushd \\Games\\RunGame_Main_Test && RunGame_Main_Test.bat'
             echo 'step: login'
-            bat 'pushd \\Auto && AutoHotkey.exe login.ahk'
+            bat 'pushd \\Auto && AutoHotkey.exe example.ahk'
           }
         }
 
