@@ -12,6 +12,8 @@ pipeline {
             bat 'pushd \\Games\\RunGame_Main_Test && RunGame_Main_Test.bat'
             echo 'step: login'
             bat 'pushd \\Auto && AutoHotkey.exe example.ahk'
+            echo 'step: upload log'
+            bat 'pushd \\Auto && py pakinfo_upload.py'
           }
         }
 
