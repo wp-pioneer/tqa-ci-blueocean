@@ -23,6 +23,11 @@ pipeline {
           }
           steps {
             echo 'step: run game...'
+            bat 'pushd \\BravoHotel_Main\\RunGame_Main_Test && RunGame_Main_Test.bat'
+            echo 'step: login'
+            bat 'pushd \\Auto && AutoHotkey.exe example.ahk'
+            echo 'step: upload log'
+            bat 'pushd \\Auto && py pakinfo_upload.py'
           }
         }
 
