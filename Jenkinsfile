@@ -19,7 +19,7 @@ pipeline {
 
         stage('run2') {
           agent {
-            label 'stella'
+            label 'FLOOR6_PC1'
           }
           steps {
             echo 'step: run game...'
