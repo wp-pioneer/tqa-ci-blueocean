@@ -1,4 +1,5 @@
 def doWork( final String name) {
+  bat 'setlocal EnableDelayedExpansion'
   echo 'step: run game...'
   bat 'pushd \\Games\\RunGame_QA && RunGame_QA_Test.bat'
   echo 'step: login'
