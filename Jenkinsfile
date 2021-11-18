@@ -27,12 +27,12 @@ pipeline {
   agent none
   stages {
     stage('parallels stage') {
-      parallel( 
+      parallel {
         1: { doWorkByLabel('HIGHTEST1') },
         2: { doWorkByLabel('HIGHTEST2') },
-        3: { doWorkByLabel('HIGHTEST3') } ,
+        3: { doWorkByLabel('HIGHTEST3') },
         4: { doWorkByLabel('HIGHTEST4') },
-      )
+      }
       
     }
 
