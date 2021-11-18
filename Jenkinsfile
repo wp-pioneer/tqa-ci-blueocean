@@ -1,4 +1,4 @@
-def doWork( final Streing name) {
+def doWork( final String name) {
   echo 'step: run game...'
   bat 'pushd \\Games\\RunGame_QA && RunGame_QA_Test.bat'
   echo 'step: login'
