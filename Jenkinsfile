@@ -19,7 +19,9 @@ pipeline {
             label 'HIGHTEST1'
           }
           steps {
-            doWork() 
+            script {
+              doWork('HIGHTEST1')
+            } 
           }
         }
 
@@ -28,8 +30,9 @@ pipeline {
             label 'HIGHTEST2'
           }
           steps {
-            doWork() 
-          }
+            script {
+              doWork('HIGHTEST2')
+            } 
         }
 
         stage('run3') {
@@ -37,7 +40,9 @@ pipeline {
             label 'HIGHTEST3'
           }
           steps {
-            doWork() 
+            script {
+              doWork('HIGHTEST3')
+            } 
           }
         }
 
@@ -46,7 +51,9 @@ pipeline {
             label 'HIGHTEST4'
           }
           steps {
-            doWork() 
+            script {
+              doWork('HIGHTEST4')
+            } 
           }
         }
 
