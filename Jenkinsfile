@@ -1,37 +1,39 @@
+def doWork() {
+  echo 'step: run game...'
+  bat 'pushd \\Games\\RunGame_QA && RunGame_QA_Test.bat'
+  echo 'step: login'
+  bat 'pushd \\Auto && AutoHotkey.exe example.ahk'
+  echo 'step: upload log'
+  bat 'pushd \\Auto && py pakinfo_upload.py'
+}
+
+def doWorkByLabel( final String label ) {
+  stage("run ${label}") {
+    agent {
+      label : label
+    }
+    steps {
+      echo 'step: run game...'
+      bat 'pushd \\Games\\RunGame_QA && RunGame_QA_Test.bat'
+      echo 'step: login'
+      bat 'pushd \\Auto && AutoHotkey.exe example.ahk'
+      echo 'step: upload log'
+      bat 'pushd \\Auto && py pakinfo_upload.py'  
+    }
+  } 
+}
+
 pipeline {
   agent none
   stages {
     stage('parallels stage') {
-      parallel {
-        stage('run1') {
-          agent {
-            label 'HIGHEST1'
-          }
-          steps {
-            echo 'step: run game...'
-            bat 'pushd \\Games\\RunGame_QA && RunGame_QA_Test.bat'
-            echo 'step: login'
-            bat 'pushd \\Auto && AutoHotkey.exe example.ahk'
-            echo 'step: upload log'
-            bat 'pushd \\Auto && py pakinfo_upload.py'
-          }
-        }
-
-        /*stage('run2') {
-          agent {
-            label 'FLOOR6_PC1'
-          }
-          steps {
-            echo 'step: run game...'
-            bat 'pushd \\BravoHotel_Main && RunGame_Main_Test.bat'
-            echo 'step: login'
-            bat 'pushd \\Auto && AutoHotkey.exe example.ahk'
-            echo 'step: upload log'
-            bat 'pushd \\Auto && py pakinfo_upload.py'
-          }
-        }*/
-
-      }
+      parallel( [
+        doWorkByLabel('HIGHTEST1'),
+        doWorkByLabel('HIGHTEST2'),
+        doWorkByLabel('HIGHTEST3'),
+        doWorkByLabel('HIGHTEST4'),
+      ])
+      
     }
 
   }
