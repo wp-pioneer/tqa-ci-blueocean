@@ -2,7 +2,7 @@ def doWork( final String name) {
   echo 'step: run game...'
   bat """
   setlocal EnableDelayedExpansion
-  pushd \\Games\\RunGame_QA && RunGame_QA_Test.bat
+  pushd \\Games\\RunGame_Main && RunGame_Main_Test.bat
   """
   echo 'step: login'
   bat 'pushd \\Auto && AutoHotkey.exe example.ahk'
