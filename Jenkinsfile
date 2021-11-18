@@ -8,7 +8,7 @@ def doWork() {
 }
 
 def doWorkByLabel( final String label ) {
-  stage("run ${label}") {
+  stage('run') {
     agent {
       label : label
     }
@@ -27,13 +27,16 @@ pipeline {
   agent none
   stages {
     stage('parallels stage') {
-      parallel {
-        1: { doWorkByLabel('HIGHTEST1') },
-        2: { doWorkByLabel('HIGHTEST2') },
-        3: { doWorkByLabel('HIGHTEST3') },
-        4: { doWorkByLabel('HIGHTEST4') },
+      steps {
+        script {
+          tasks = [:]
+          tasks[1] = doWorkByLabel('HIGHTEST1')
+          tasks[2] = doWorkByLabel('HIGHTEST2')
+          tasks[3] = doWorkByLabel('HIGHTEST3')
+          tasks[4] = doWorkByLabel('HIGHTEST4')
+          parallels tasks
+        }
       }
-      
     }
 
   }
