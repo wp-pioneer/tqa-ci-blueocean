@@ -5,11 +5,11 @@ pipeline {
       parallel {
         stage('run1') {
           agent {
-            label 'worker-leo'
+            label 'HIGHEST1'
           }
           steps {
             echo 'step: run game...'
-            bat 'pushd \\Games\\RunGame_Main_Test && RunGame_Main_Test.bat'
+            bat 'pushd \\Games\\RunGame_QA && RunGame_QA_Test.bat'
             echo 'step: login'
             bat 'pushd \\Auto && AutoHotkey.exe example.ahk'
             echo 'step: upload log'
@@ -17,7 +17,7 @@ pipeline {
           }
         }
 
-        stage('run2') {
+        /*stage('run2') {
           agent {
             label 'FLOOR6_PC1'
           }
@@ -29,7 +29,7 @@ pipeline {
             echo 'step: upload log'
             bat 'pushd \\Auto && py pakinfo_upload.py'
           }
-        }
+        }*/
 
       }
     }
