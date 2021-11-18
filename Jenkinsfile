@@ -33,6 +33,7 @@ pipeline {
             script {
               doWork('HIGHTEST2')
             } 
+          }
         }
 
         stage('run3') {
