@@ -2,6 +2,7 @@ def doWork( final String name) {
   echo 'step: run game...'
   bat """
   setlocal EnableDelayedExpansion
+  taskkill /f /im BravoHotel*
   pushd \\Games\\RunGame_Main && RunGame_Main_Test.bat
   exit /b 0
   """
