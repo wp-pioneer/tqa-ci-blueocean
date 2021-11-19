@@ -15,7 +15,7 @@ def doWork( final String name) {
   exit /b 0
   """
   echo 'step: login'
-  bat 'pushd \\Auto && AutoHotkey.exe example.ahk'
+  bat "pushd \\Auto && AutoHotkey.exe example.ahk ${name}"
   echo 'step: upload log'
   bat 'pushd \\Auto && py pakinfo_upload.py'
 }
@@ -33,7 +33,7 @@ pipeline {
           }
           steps {
             script {
-              doWork('HIGHTEST1')
+              doWork('TQA_HIGHTEST1')
             } 
           }
         }
@@ -44,7 +44,7 @@ pipeline {
           }
           steps {
             script {
-              doWork('HIGHTEST2')
+              doWork('TQA_HIGHTEST2')
             } 
           }
         }
@@ -55,7 +55,7 @@ pipeline {
           }
           steps {
             script {
-              doWork('HIGHTEST3')
+              doWork('TQA_HIGHTEST3')
             } 
           }
         }
@@ -66,7 +66,7 @@ pipeline {
           }
           steps {
             script {
-              doWork('HIGHTEST4')
+              doWork('TQA_HIGHTEST4')
             } 
           }
         }
