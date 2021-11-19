@@ -1,11 +1,11 @@
 def doWork( final String name) {
   echo 'startingg...'
   echo 'syncing macro script...'
-  bat "
+  bat """
   setlocal EnableDelayedExpansion
   robocopy \\kate.oscarmike.io\SharedDDC\Auto c:\Auto /MIR /s /TEE
   exit /b 0
-  " 
+  """
   echo 'start main script'
   bat """
   setlocal EnableDelayedExpansion
