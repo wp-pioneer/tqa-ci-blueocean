@@ -3,7 +3,7 @@ def doWork( final String name) {
   echo 'syncing macro script...'
   bat """
   setlocal EnableDelayedExpansion
-  robocopy \\\\kate.oscarmike.io\\SharedDDC\\Auto c:\\Auto /MIR /s /TEE
+  robocopy \\\\kate.oscarmike.io\\SharedDDC\\kate\\Auto c:\\Auto /MIR /s /TEE
   exit /b 0
   """
   echo 'start main script'
