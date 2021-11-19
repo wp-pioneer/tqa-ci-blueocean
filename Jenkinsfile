@@ -27,7 +27,7 @@ pipeline {
     stage('parallels stage') {
       parallel {
       
-        stage('run1') {
+        stage('HIGHTEST1') {
           agent {
             label 'HIGHTEST1'
           }
@@ -38,7 +38,7 @@ pipeline {
           }
         }
 
-        stage('run2') {
+        stage('HIGHTEST2') {
           agent {
             label 'HIGHTEST2'
           }
@@ -49,7 +49,7 @@ pipeline {
           }
         }
 
-        stage('run3') {
+        stage('HIGHTEST3') {
           agent {
             label 'HIGHTEST3'
           }
@@ -60,7 +60,7 @@ pipeline {
           }
         }
 
-        stage('run4') {
+        stage('HIGHTEST4') {
           agent {
             label 'HIGHTEST4'
           }
@@ -71,7 +71,7 @@ pipeline {
           }
         }
 
-        stage('run5') {
+        stage('LOWTEST1') {
           agent {
             label 'LOWTEST1'
           }
@@ -82,7 +82,7 @@ pipeline {
           }
         }
 
-        stage('run6') {
+        stage('LOWTEST2') {
           agent {
             label 'LOWTEST2'
           }
@@ -93,7 +93,18 @@ pipeline {
           }
         }
 
-        stage('run7') {
+        stage('LOWTEST3') {
+          agent {
+            label 'LOWTEST3'
+          }
+          steps {
+            script {
+              doWork('TQA_LOWTEST3')
+            } 
+          }
+        }
+
+        stage('LOWTEST4') {
           agent {
             label 'LOWTEST4'
           }
@@ -104,7 +115,7 @@ pipeline {
           }
         }
 
-        stage('run8') {
+        stage('LOWTEST5') {
           agent {
             label 'LOWTEST5'
           }
@@ -115,7 +126,7 @@ pipeline {
           }
         }
 
-        stage('run9') {
+        stage('MIDDLETEST1') {
           agent {
             label 'MIDDLETEST1'
           }
@@ -126,7 +137,7 @@ pipeline {
           }
         }
 
-        stage('run10') {
+        stage('MIDDLETEST2') {
           agent {
             label 'MIDDLETEST2'
           }
@@ -137,7 +148,7 @@ pipeline {
           }
         }
 
-        stage('run11') {
+        stage('MIDDLETEST3') {
           agent {
             label 'MIDDLETEST3'
           }
@@ -148,7 +159,7 @@ pipeline {
           }
         }
 
-        stage('run12') {
+        stage('MIDDLETEST4') {
           agent {
             label 'MIDDLETEST4'
           }
