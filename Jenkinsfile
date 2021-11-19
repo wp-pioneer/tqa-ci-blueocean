@@ -71,6 +71,94 @@ pipeline {
           }
         }
 
+        stage('run5') {
+          agent {
+            label 'LOWTEST1'
+          }
+          steps {
+            script {
+              doWork('TQA_LOWTEST1')
+            } 
+          }
+        }
+
+        stage('run6') {
+          agent {
+            label 'LOWTEST2'
+          }
+          steps {
+            script {
+              doWork('TQA_LOWTEST3')
+            } 
+          }
+        }
+
+        stage('run7') {
+          agent {
+            label 'LOWTEST4'
+          }
+          steps {
+            script {
+              doWork('TQA_LOWTEST4')
+            } 
+          }
+        }
+
+        stage('run8') {
+          agent {
+            label 'LOWTEST5'
+          }
+          steps {
+            script {
+              doWork('TQA_LOWTEST5')
+            } 
+          }
+        }
+
+        stage('run9') {
+          agent {
+            label 'MIDDLETEST1'
+          }
+          steps {
+            script {
+              doWork('TQA_MIDDLETEST1')
+            } 
+          }
+        }
+
+        stage('run10') {
+          agent {
+            label 'MIDDLETEST2'
+          }
+          steps {
+            script {
+              doWork('TQA_MIDDLETEST2')
+            } 
+          }
+        }
+
+        stage('run11') {
+          agent {
+            label 'MIDDLETEST3'
+          }
+          steps {
+            script {
+              doWork('TQA_MIDDLETEST3')
+            } 
+          }
+        }
+
+        stage('run12') {
+          agent {
+            label 'MIDDLETEST4'
+          }
+          steps {
+            script {
+              doWork('TQA_MIDDLETEST4')
+            } 
+          }
+        }
+
 
 
 
