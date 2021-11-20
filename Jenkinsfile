@@ -88,7 +88,7 @@ pipeline {
           }
           steps {
             script {
-              doWork('TQA_LOWTEST3')
+              doWork('TQA_LOWTEST2')
             } 
           }
         }
