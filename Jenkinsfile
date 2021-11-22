@@ -34,10 +34,14 @@ pipeline {
           agent {
             label 'HIGHTEST1'
           }
-          steps {
-            script {
-              doWork('TQA_HIGHTEST1')
-            } 
+          stages('HIGHTEST1 sub-stages') {
+            stage('HIGHTEST1 sub-1') {
+              steps {
+                script {
+                  doWork('TQA_HIGHTEST1')
+                } 
+              }
+            }
           }
         }
 
