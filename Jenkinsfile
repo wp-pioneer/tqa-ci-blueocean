@@ -24,7 +24,7 @@ def doWork( final String name) {
 pipeline {
   agent none
   triggers {
-    cron('0 19-9 * * *')
+    cron('* */1 * * *')
   }
   stages {
     stage('parallels stage') {
