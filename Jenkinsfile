@@ -16,13 +16,16 @@ def doWork( final String name) {
   """
   echo 'step: login'
   bat "pushd \\Auto && AutoHotkey.exe example.ahk ${name}"
-  echo 'step: upload log'
-  bat 'pushd \\Auto && py pakinfo_upload.py'
+  //echo 'step: upload log'
+  //bat 'pushd \\Auto && py pakinfo_upload.py'
 }
 
 
 pipeline {
   agent none
+  triggers {
+    cron('0 19-9/1 * * *')
+  }
   stages {
     stage('parallels stage') {
       parallel {
