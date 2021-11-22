@@ -11,7 +11,7 @@ def doWork( final String name) {
   setlocal EnableDelayedExpansion
   taskkill /f /im BravoHotel*
   taskkill /f /im AutoHotKey*
-  pushd \\Games\\RunGame_Main && RunGame_Main_Test.bat
+  pushd \\Games\\RunGame_QA && RunGame_QA_Test.bat
   exit /b 0
   """
   echo 'step: login'
