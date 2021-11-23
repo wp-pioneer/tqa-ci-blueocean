@@ -33,9 +33,8 @@ def doDynamicParallelSteps(){
   for(int i=0; i < list.size(); i++) {
     def name = list[i];
     tests["${name}"] = {
-      agent {
+      node {
         label "${name}"
-      }
         stage("sequantial") {
           stages {
             stage("start") {
@@ -62,6 +61,7 @@ def doDynamicParallelSteps(){
         }
       }
     }
+  }
 
   parallel tests
 }
