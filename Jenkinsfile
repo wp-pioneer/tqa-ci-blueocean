@@ -20,7 +20,7 @@ def doWork( final String name) {
   //bat 'pushd \\Auto && py pakinfo_upload.py'
 }
 
-def funcTest( finale String name ) {
+def funcTest( final String name ) {
   echo "Element: $name"
 }
 
