@@ -60,7 +60,6 @@ def doDynamicParallelSteps(){
           }
         }
       }
-
     }
   }
 
@@ -75,10 +74,8 @@ pipeline {
   }
   stages {
     stage('병렬처리') {
-      steps {
-        script {
-          doDynamicParallelSteps()
-        }
+      script {
+        doDynamicParallelSteps()
       }
     }
   }
