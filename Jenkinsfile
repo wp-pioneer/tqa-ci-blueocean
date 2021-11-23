@@ -23,7 +23,7 @@ def doWork( final String name) {
 def doDynamicParallelSteps(){
   tests = [:]
   for(int i=0; i < list.size(); i++) {
-    tests["job ${i}"] = {}
+    tests["job ${i}"] = {
       stage(list[i]){
         echo "Element: $i"
       }
