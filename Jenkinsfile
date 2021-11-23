@@ -33,9 +33,7 @@ def doDynamicParallelSteps(){
   for(int i=0; i < list.size(); i++) {
     def name = list[i];
     tests["${name}"] = {
-      node {
-        label "${name}"
-        stage("sequantial") {
+      stage("sequantial") {
           stages {
             stage("start") {
               script {
@@ -57,7 +55,6 @@ def doDynamicParallelSteps(){
                 funcTest(name)
               }
             }
-          }
         }
       }
     }
