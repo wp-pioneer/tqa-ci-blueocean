@@ -37,19 +37,34 @@ def doDynamicParallelSteps(){
         label "${name}"
         stage("${name}") {
           script {
-            stage("@${name}") {
-              echo '18'
+            stage("@${name} start") {
+              echo 'starting..'
             }
-            stage('newone2') {
+            stage('run') {
               echo 'plz'
             }
-            stage('newone3') {
+            stage('update') {
               echo 'plz'
             }
-            stage('newone4') {
+            stage('login') {
               echo 'plz'
             }
-            stage('newone5') {
+            stage('makeAccount') {
+              echo 'plz'
+            }
+            stage('lobby') {
+              echo 'plz'
+            }
+            stage('mode_select') {
+              echo 'plz'
+            }
+            stage('startGame') {
+              echo 'plz'
+            }
+            stage('returnLobby') {
+              echo 'plz'
+            }
+            stage('cleanup') {
               echo 'plz'
             }
           }
