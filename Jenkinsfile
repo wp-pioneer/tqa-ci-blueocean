@@ -34,64 +34,66 @@ def doDynamicParallelSteps(){
     def name = list[i] as String;
     tests["${name}"] = {
       node("${name}") {
-        stage("${name}") {
-          script {
-            stage("@${name} start") {
-              echo 'starting..'
-              bat """
-              taskkill /f /im BravoHotel*
-              taskkill /f /im AutoHotKey*
-              setlocal EnableDelayedExpansion
-              robocopy \\\\kate.oscarmike.io\\SharedDDC\\kate\\Auto c:\\Auto /MIR /s /TEE
-              exit /b 0
-              """
-            }
-            stage('run') {
-              echo 'running....'
-              bat """
-              setlocal EnableDelayedExpansion
-              taskkill /f /im BravoHotel*
-              taskkill /f /im AutoHotKey*
-              pushd \\Auto && start AutoHotkey.exe check_crash.ahk ${name}
-              pushd \\Games\\RunGame_QA && RunGame_QA_Test.bat
-              exit /b 0
-              """
-            }
-            stage('update') {
-              echo 'plz'
-              bat "pushd \\Auto && AutoHotkey.exe stage_update.ahk ${name}"
-            }
-            stage('login') {
-              echo 'plz'
-              bat "pushd \\Auto && AutoHotkey.exe stage_login.ahk ${name}"
-            }
-            stage('makeAccount') {
-              echo 'plz'
-              bat "pushd \\Auto && AutoHotkey.exe stage_makeAccount.ahk ${name}"
-            }
-            stage('lobby') {
-              echo 'plz'
-              bat "pushd \\Auto && AutoHotkey.exe stage_lobby.ahk ${name}"
-            }
-            stage('mode_select') {
-              echo 'plz'
-              bat "pushd \\Auto && AutoHotkey.exe stage_mode_select.ahk ${name}"
-            }
-            stage('startGame') {
-              echo 'plz'
-              bat "pushd \\Auto && AutoHotkey.exe stage_start_game.ahk ${name}"
-            }
-            stage('returnLobby') {
-              echo 'plz'
-              bat "pushd \\Auto && AutoHotkey.exe stage_return_lobby.ahk ${name}"
-            }
-            stage('cleanup') {
-              echo 'plz'
-              bat """
-              taskkill /f /im BravoHotel*
-              taskkill /f /im AutoHotKey*
-              exit /b 0
-              """
+        timeout(unit: 'MINUTES', time: 50 ) {
+          stage("${name}") {
+            script {
+              stage("@${name} start") {
+                echo 'starting..'
+                bat """
+                taskkill /f /im BravoHotel*
+                taskkill /f /im AutoHotKey*
+                setlocal EnableDelayedExpansion
+                robocopy \\\\kate.oscarmike.io\\SharedDDC\\kate\\Auto c:\\Auto /MIR /s /TEE
+                exit /b 0
+                """
+              }
+              stage('run') {
+                echo 'running....'
+                bat """
+                setlocal EnableDelayedExpansion
+                taskkill /f /im BravoHotel*
+                taskkill /f /im AutoHotKey*
+                pushd \\Auto && start AutoHotkey.exe check_crash.ahk ${name}
+                pushd \\Games\\RunGame_QA && RunGame_QA_Test.bat
+                exit /b 0
+                """
+              }
+              stage('update') {
+                echo 'plz'
+                bat "pushd \\Auto && AutoHotkey.exe stage_update.ahk ${name}"
+              }
+              stage('login') {
+                echo 'plz'
+                bat "pushd \\Auto && AutoHotkey.exe stage_login.ahk ${name}"
+              }
+              stage('makeAccount') {
+                echo 'plz'
+                bat "pushd \\Auto && AutoHotkey.exe stage_makeAccount.ahk ${name}"
+              }
+              stage('lobby') {
+                echo 'plz'
+                bat "pushd \\Auto && AutoHotkey.exe stage_lobby.ahk ${name}"
+              }
+              stage('mode_select') {
+                echo 'plz'
+                bat "pushd \\Auto && AutoHotkey.exe stage_mode_select.ahk ${name}"
+              }
+              stage('startGame') {
+                echo 'plz'
+                bat "pushd \\Auto && AutoHotkey.exe stage_start_game.ahk ${name}"
+              }
+              stage('returnLobby') {
+                echo 'plz'
+                bat "pushd \\Auto && AutoHotkey.exe stage_return_lobby.ahk ${name}"
+              }
+              stage('cleanup') {
+                echo 'plz'
+                bat """
+                taskkill /f /im BravoHotel*
+                taskkill /f /im AutoHotKey*
+                exit /b 0
+                """
+              }
             }
           }
         }
