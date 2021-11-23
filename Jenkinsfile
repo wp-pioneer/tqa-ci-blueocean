@@ -33,13 +33,10 @@ def doDynamicParallelSteps(){
   for(int i=0; i < list.size(); i++) {
     def name = list[i] as String;
     tests["${name}"] = {
-      node {
+      node("${name}") {
         stage("${name}") {
           script {
             stage("@${name} start") {
-              agent {
-                label "${name}"
-              }
               echo 'starting..'
               bat """
               taskkill /f /im BravoHotel*
