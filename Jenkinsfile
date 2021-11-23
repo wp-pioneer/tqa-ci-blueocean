@@ -105,6 +105,10 @@ def doDynamicParallelSteps(){
 
 pipeline {
   agent none
+  options {
+    disableConcurrentBuilds()
+    preserveStashes(buildCount: 10)
+  }
   triggers {
     cron('0 */1 * * *')
   }
