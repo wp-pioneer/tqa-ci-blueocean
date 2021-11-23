@@ -34,10 +34,8 @@ def doDynamicParallelSteps(){
     def name = list[i];
     tests["${name}"] = {
       node {
+        label "${name}"
         stage("${name}") {
-          agent {
-            label "${name}"
-          }
           script {
             stage("@${name} start") {
               echo 'starting..'
