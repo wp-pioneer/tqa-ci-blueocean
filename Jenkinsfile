@@ -75,12 +75,15 @@ def doDynamicParallelSteps(){
             }
             stage('mode_select') {
               echo 'plz'
+              bat "pushd \\Auto && AutoHotkey.exe stage_mode_select.ahk ${name}"
             }
             stage('startGame') {
               echo 'plz'
+              bat "pushd \\Auto && AutoHotkey.exe stage_start_game.ahk ${name}"
             }
             stage('returnLobby') {
               echo 'plz'
+              bat "pushd \\Auto && AutoHotkey.exe stage_return_lobby.ahk ${name}"
             }
             stage('cleanup') {
               echo 'plz'
