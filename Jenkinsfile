@@ -35,7 +35,12 @@ def doDynamicParallelSteps(){
     tests["${name}"] = {
       node {
         label "${name}"
-        stage("${name}") {
+        stage("login") {
+          script {
+            funcTest(name)
+          }
+        }
+        stage("choose mode") {
           script {
             funcTest(name)
           }
