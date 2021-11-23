@@ -36,8 +36,10 @@ def doDynamicParallelSteps(){
       node {
         label "${name}"
         stage("sequantial") {
-          stages {
+          steps {
+            stages {
 
+            }
           }
         }
       }
