@@ -33,25 +33,25 @@ def doDynamicParallelSteps(){
   for(int i=0; i < list.size(); i++) {
     def name = list[i];
     tests["${name}"] = {
-      stage("${name}") {
-        agent {
-          label "${name}"
-        }
-        script {
-          stage("@${name}") {
-            echo '18'
-          }
-          stage('newone2') {
-            echo 'plz'
-          }
-          stage('newone3') {
-            echo 'plz'
-          }
-          stage('newone4') {
-            echo 'plz'
-          }
-          stage('newone5') {
-            echo 'plz'
+      node {
+        label "${name}"
+        stage("${name}") {
+          script {
+            stage("@${name}") {
+              echo '18'
+            }
+            stage('newone2') {
+              echo 'plz'
+            }
+            stage('newone3') {
+              echo 'plz'
+            }
+            stage('newone4') {
+              echo 'plz'
+            }
+            stage('newone5') {
+              echo 'plz'
+            }
           }
         }
       }
