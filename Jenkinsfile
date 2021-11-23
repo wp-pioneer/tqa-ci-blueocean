@@ -11,7 +11,7 @@ def doWork( final String name) {
   setlocal EnableDelayedExpansion
   taskkill /f /im BravoHotel*
   taskkill /f /im AutoHotKey*
-  pushd \\Games\\RunGame_QA && RunGame_QA_Test.bat
+  pushd \\Games\\RunGame_Main && RunGame_Main_Test.bat
   exit /b 0
   """
   echo 'step: login'
@@ -112,7 +112,7 @@ pipeline {
     preserveStashes(buildCount: 10)
   }
   triggers {
-    //cron('0 */1 * * *')
+    cron('0 */1 * * *')
   }
   stages {
     stage('병렬처리') {
