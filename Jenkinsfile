@@ -112,7 +112,7 @@ pipeline {
     preserveStashes(buildCount: 10)
   }
   triggers {
-    cron('0 3-8 * * *')
+    cron('TZ=Asia/Seoul\n0 3-8 * * *')
   }
   stages {
     stage('병렬처리') {
