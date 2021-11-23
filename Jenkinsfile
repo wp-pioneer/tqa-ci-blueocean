@@ -36,12 +36,12 @@ pipeline {
                   stage(list[i]){
                       echo "Element: $i"
                   }
+                }
               }
             }
           }
         }
       }
     }
-
   }
 }
