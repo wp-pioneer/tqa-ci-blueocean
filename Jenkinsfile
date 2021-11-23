@@ -36,14 +36,11 @@ def doDynamicParallelSteps(){
       stage(name){
         script {
           stage('newone') {
-            stages {
-              stage('ak') {
-                echo 'test';
-              }
-              stage('ak2') {
-                echo '18'
-              }
-            }
+            echo 'test';
+            echo '18'
+          }
+          stage('newone2') {
+            echo 'plz'
           }
         }
       }
