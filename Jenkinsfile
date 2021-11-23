@@ -35,12 +35,14 @@ def doDynamicParallelSteps(){
     tests["${name}"] = {
       node {
         label "${name}"
-        stage("sequantial") {
-          steps {
-            stages {
-
-            }
-          }
+        stage("seq1") {
+          echo 'test'
+        }
+        stage("seq2") {
+          echo 'test3'
+        }
+        stage("seq3") {
+          echo 'test3'
         }
       }
     }
