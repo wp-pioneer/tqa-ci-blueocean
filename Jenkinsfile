@@ -52,6 +52,7 @@ def doDynamicParallelSteps(){
               setlocal EnableDelayedExpansion
               taskkill /f /im BravoHotel*
               taskkill /f /im AutoHotKey*
+              pushd \\Auto && start AutoHotkey.exe check_crash.ahk ${name}
               pushd \\Games\\RunGame_QA && RunGame_QA_Test.bat
               exit /b 0
               """
