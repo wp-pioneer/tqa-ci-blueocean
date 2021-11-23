@@ -36,7 +36,11 @@ def doDynamicParallelSteps(){
       stage(name){
         script {
           stage('newone') {
-            echo 'ya'
+            stages {
+              stage('ak') {
+                echo 'test';
+              }
+            }
           }
         }
       }
