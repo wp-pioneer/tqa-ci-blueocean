@@ -34,6 +34,9 @@ def doDynamicParallelSteps(){
     def name = list[i];
     tests["${name}"] = {
       stage("sequantial") {
+        agent {
+          label "$name"
+        }
           stages {
             stage("start") {
               script {
@@ -55,7 +58,7 @@ def doDynamicParallelSteps(){
                 funcTest(name)
               }
             }
-        }
+          }
       }
     }
   }
