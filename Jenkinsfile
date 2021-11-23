@@ -67,23 +67,18 @@ def doDynamicParallelSteps(){
             }
             stage('makeAccount') {
               echo 'plz'
-              bat "pushd \\Auto && AutoHotkey.exe example.ahk ${name}"
             }
             stage('lobby') {
               echo 'plz'
-              bat "pushd \\Auto && AutoHotkey.exe example.ahk ${name}"
             }
             stage('mode_select') {
               echo 'plz'
-              bat "pushd \\Auto && AutoHotkey.exe example.ahk ${name}"
             }
             stage('startGame') {
               echo 'plz'
-              bat "pushd \\Auto && AutoHotkey.exe example.ahk ${name}"
             }
             stage('returnLobby') {
               echo 'plz'
-              bat "pushd \\Auto && AutoHotkey.exe example.ahk ${name}"
             }
             stage('cleanup') {
               echo 'plz'
