@@ -31,13 +31,11 @@ def doDynamicParallelSteps(){
               "MIDDLETEST1", "MIDDLETEST2", "MIDDLETEST3", "MIDDLETEST4"]              
   tests = [:]
   for(int i=0; i < list.size(); i++) {
-    def name = list[i];
+    def name = list[i] as String;
     tests["${name}"] = {
       node {
+        label "${name}"
         stage("${name}") {
-          agent {
-            label "${name}"
-          }
           script {
             stage("@${name} start") {
               echo 'starting..'
