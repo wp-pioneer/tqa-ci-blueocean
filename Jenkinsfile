@@ -27,159 +27,17 @@ pipeline {
     cron('0 */1 * * *')
   }
   stages {
-    stage('parallels stage') {
+    stage('병렬처리') {
       parallel {
-      
-        stage('HIGHTEST1') {
-          agent {
-            label 'HIGHTEST1'
-          }
-          stages('HIGHTEST1 sub-stages') {
-            stage('HIGHTEST1 sub-1') {
-              steps {
-                script {
-                  doWork('TQA_HIGHTEST1')
-                } 
-              }
+        steps {
+          script {
+            for(int i=0; i < list.size(); i++) {
+                stage(list[i]){
+                    echo "Element: $i"
+                }
             }
           }
         }
-
-        stage('HIGHTEST2') {
-          agent {
-            label 'HIGHTEST2'
-          }
-          steps {
-            script {
-              doWork('TQA_HIGHTEST2')
-            } 
-          }
-        }
-
-        stage('HIGHTEST3') {
-          agent {
-            label 'HIGHTEST3'
-          }
-          steps {
-            script {
-              doWork('TQA_HIGHTEST3')
-            } 
-          }
-        }
-
-        stage('HIGHTEST4') {
-          agent {
-            label 'HIGHTEST4'
-          }
-          steps {
-            script {
-              doWork('TQA_HIGHTEST4')
-            } 
-          }
-        }
-
-        stage('LOWTEST1') {
-          agent {
-            label 'LOWTEST1'
-          }
-          steps {
-            script {
-              doWork('TQA_LOWTEST1')
-            } 
-          }
-        }
-
-        stage('LOWTEST2') {
-          agent {
-            label 'LOWTEST2'
-          }
-          steps {
-            script {
-              doWork('TQA_LOWTEST2')
-            } 
-          }
-        }
-
-        stage('LOWTEST3') {
-          agent {
-            label 'LOWTEST3'
-          }
-          steps {
-            script {
-              doWork('TQA_LOWTEST3')
-            } 
-          }
-        }
-
-        stage('LOWTEST4') {
-          agent {
-            label 'LOWTEST4'
-          }
-          steps {
-            script {
-              doWork('TQA_LOWTEST4')
-            } 
-          }
-        }
-
-        stage('LOWTEST5') {
-          agent {
-            label 'LOWTEST5'
-          }
-          steps {
-            script {
-              doWork('TQA_LOWTEST5')
-            } 
-          }
-        }
-
-        stage('MIDDLETEST1') {
-          agent {
-            label 'MIDDLETEST1'
-          }
-          steps {
-            script {
-              doWork('TQA_MIDDLETEST1')
-            } 
-          }
-        }
-
-        stage('MIDDLETEST2') {
-          agent {
-            label 'MIDDLETEST2'
-          }
-          steps {
-            script {
-              doWork('TQA_MIDDLETEST2')
-            } 
-          }
-        }
-
-        stage('MIDDLETEST3') {
-          agent {
-            label 'MIDDLETEST3'
-          }
-          steps {
-            script {
-              doWork('TQA_MIDDLETEST3')
-            } 
-          }
-        }
-
-        stage('MIDDLETEST4') {
-          agent {
-            label 'MIDDLETEST4'
-          }
-          steps {
-            script {
-              doWork('TQA_MIDDLETEST4')
-            } 
-          }
-        }
-
-
-
-
       }
     }
 
