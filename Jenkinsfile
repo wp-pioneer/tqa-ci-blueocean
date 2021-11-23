@@ -31,12 +31,13 @@ def doDynamicParallelSteps(){
               "MIDDLETEST1", "MIDDLETEST2", "MIDDLETEST3", "MIDDLETEST4"]              
   tests = [:]
   for(int i=0; i < list.size(); i++) {
+    def name = list[i];
     tests["${list[i]}"] = {
       node {
         label "${list[i]}"
         stage("${list[i]}") {
           script {
-            funcTest("test")
+            funcTest(name)
           }
         }
       }
