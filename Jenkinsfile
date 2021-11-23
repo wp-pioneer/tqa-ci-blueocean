@@ -35,14 +35,10 @@ def doDynamicParallelSteps(){
     tests["${name}"] = {
       node {
         label "${name}"
-        stage("seq1") {
-          echo 'test'
-        }
-        stage("seq2") {
-          echo 'test3'
-        }
-        stage("seq3") {
-          echo 'test3'
+        stages {
+          stage("seq1") {
+            echo 'test'
+          }
         }
       }
     }
