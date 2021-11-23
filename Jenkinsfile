@@ -80,6 +80,7 @@ def doDynamicParallelSteps(){
             }
             stage('cleanup') {
               echo 'plz'
+              sleep 60
             }
           }
         }
