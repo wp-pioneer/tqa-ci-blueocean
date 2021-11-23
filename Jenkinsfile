@@ -59,28 +59,39 @@ def doDynamicParallelSteps(){
             }
             stage('update') {
               echo 'plz'
+              bat "pushd \\Auto && AutoHotkey.exe stage_update.ahk ${name}"
             }
             stage('login') {
               echo 'plz'
+              bat "pushd \\Auto && AutoHotkey.exe example.ahk ${name}"
             }
             stage('makeAccount') {
               echo 'plz'
+              bat "pushd \\Auto && AutoHotkey.exe example.ahk ${name}"
             }
             stage('lobby') {
               echo 'plz'
+              bat "pushd \\Auto && AutoHotkey.exe example.ahk ${name}"
             }
             stage('mode_select') {
               echo 'plz'
+              bat "pushd \\Auto && AutoHotkey.exe example.ahk ${name}"
             }
             stage('startGame') {
               echo 'plz'
+              bat "pushd \\Auto && AutoHotkey.exe example.ahk ${name}"
             }
             stage('returnLobby') {
               echo 'plz'
+              bat "pushd \\Auto && AutoHotkey.exe example.ahk ${name}"
             }
             stage('cleanup') {
               echo 'plz'
-              sleep 60
+              bat """
+              taskkill /f /im BravoHotel*
+              taskkill /f /im AutoHotKey*
+              exit /b 0
+              """
             }
           }
         }
