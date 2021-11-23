@@ -20,9 +20,9 @@ def doWork( final String name) {
   //bat 'pushd \\Auto && py pakinfo_upload.py'
 }
 
-def list = ["Test-1", "Test-2", "Test-3", "Test-4", "Test-5"]
 
 def doDynamicParallelSteps(){
+  def list = ["Test-1", "Test-2", "Test-3", "Test-4", "Test-5"]
   tests = [:]
   for(int i=0; i < list.size(); i++) {
     tests["job ${i}"] = {
