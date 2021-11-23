@@ -35,7 +35,7 @@ def doDynamicParallelSteps(){
     tests["${name}"] = {
       stage("${name}") {
         script {
-          stage('newone') {
+          stage("@${name}") {
             echo '18'
           }
           stage('newone2') {
