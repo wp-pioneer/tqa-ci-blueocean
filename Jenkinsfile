@@ -26,11 +26,9 @@ def doDynamicParallelSteps(){
   tests = [:]
   for(int i=0; i < list.size(); i++) {
     tests["job ${i}"] = {
-      stage("${list[i]}"){
         node {
-          steps {
+          stage("${list[i]}"){
             echo "Element: $i"
-          }
         }
       }
     }
