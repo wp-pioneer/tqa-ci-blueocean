@@ -45,7 +45,7 @@ pipeline {
     stage('병렬처리') {
       steps {
         script {
-          doDynamicParallelSteps();
+          doDynamicParallelSteps()
         }
       }
     }
