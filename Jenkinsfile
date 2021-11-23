@@ -20,6 +20,9 @@ def doWork( final String name) {
   //bat 'pushd \\Auto && py pakinfo_upload.py'
 }
 
+def funcTest( finale String name ) {
+  echo "Element: $name"
+}
 
 def doDynamicParallelSteps(){
   def list = ["HIGHTEST1", "HIGHTEST2", "HIGHTEST3", "HIGHTEST4", 
@@ -28,10 +31,12 @@ def doDynamicParallelSteps(){
   tests = [:]
   for(int i=0; i < list.size(); i++) {
     tests["${list[i]}"] = {
-        node {
-          label "${list[i]}"
-          stage("${list[i]}"){
-            echo "Element: $i"
+      node {
+        label "${list[i]}"
+        stage("${list[i]}") {
+          script {
+            funcTest(list[i])
+          }
         }
       }
     }
