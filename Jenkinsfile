@@ -29,13 +29,14 @@ pipeline {
   }
   stages {
     stage('병렬처리') {
-      parallel {
         steps {
-          script {
-            for(int i=0; i < list.size(); i++) {
-                stage(list[i]){
-                    echo "Element: $i"
-                }
+          parallel {
+            script {
+              for(int i=0; i < list.size(); i++) {
+                  stage(list[i]){
+                      echo "Element: $i"
+                  }
+              }
             }
           }
         }
