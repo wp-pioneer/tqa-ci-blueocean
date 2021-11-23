@@ -31,7 +31,7 @@ pipeline {
     stage('병렬처리') {
       steps {
         script {
-          parallel {
+          parallel() {
             for(int i=0; i < list.size(); i++) {
               stage(list[i]){
                   echo "Element: $i"
