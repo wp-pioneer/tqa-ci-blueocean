@@ -20,6 +20,19 @@ def doWork( final String name) {
   //bat 'pushd \\Auto && py pakinfo_upload.py'
 }
 
+def doDynamicParallelSteps(){
+  tests = [:]
+  for(int i=0; i < list.size(); i++) {
+    tests["job ${i}"] = {}
+      stage(list[i]){
+        echo "Element: $i"
+      }
+    }
+  }
+
+  parallel tests
+}
+
 def list = ["Test-1", "Test-2", "Test-3", "Test-4", "Test-5"]
 
 pipeline {
@@ -31,13 +44,7 @@ pipeline {
     stage('병렬처리') {
       steps {
         script {
-          parallel() {
-            for(int i=0; i < list.size(); i++) {
-              stage(list[i]){
-                  echo "Element: $i"
-              }
-            }
-          }
+          doDynamicParallelSteps();
         }
       }
     }
