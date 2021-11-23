@@ -33,12 +33,8 @@ def doDynamicParallelSteps(){
   for(int i=0; i < list.size(); i++) {
     def name = list[i];
     tests["${name}"] = {
-      stage("${i}") {
+      stage("${name}") {
         script {
-          stage(name) {
-            echo 'test';
-
-          }
           stage('newone') {
             echo '18'
           }
