@@ -34,10 +34,10 @@ def doDynamicParallelSteps(){
     def name = list[i];
     tests["${name}"] = {
       stage(name){
-        node(name) {
-        stages {
-          stage('test2')
-        }
+        script {
+          stage('newone') {
+            echo 'ya'
+          }
         }
       }
     }
