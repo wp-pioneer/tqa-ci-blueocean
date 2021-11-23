@@ -32,10 +32,10 @@ def doDynamicParallelSteps(){
   tests = [:]
   for(int i=0; i < list.size(); i++) {
     def name = list[i];
-    tests["${list[i]}"] = {
+    tests["${name}"] = {
       node {
-        label "${list[i]}"
-        stage("${list[i]}") {
+        label "${name}"
+        stage("${name}") {
           script {
             funcTest(name)
           }
