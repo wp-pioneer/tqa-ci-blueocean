@@ -33,12 +33,9 @@ def doDynamicParallelSteps(){
   for(int i=0; i < list.size(); i++) {
     def name = list[i];
     tests["${name}"] = {
-      node {
-        label "${name}"
+      stage('test') {
         stages {
-          stage("seq1") {
-            echo 'test'
-          }
+          stage('test2')
         }
       }
     }
