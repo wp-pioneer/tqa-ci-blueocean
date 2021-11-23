@@ -112,7 +112,7 @@ pipeline {
     preserveStashes(buildCount: 10)
   }
   triggers {
-    cron('0 */1 * * *')
+    //cron('0 */1 * * *')
   }
   stages {
     stage('병렬처리') {
