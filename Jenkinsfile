@@ -34,6 +34,9 @@ def doDynamicParallelSteps(){
     def name = list[i];
     tests["${name}"] = {
       stage("${name}") {
+        agent {
+          label "${name}"
+        }
         script {
           stage("@${name}") {
             echo '18'
