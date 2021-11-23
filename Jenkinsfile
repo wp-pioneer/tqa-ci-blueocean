@@ -40,6 +40,9 @@ def doDynamicParallelSteps(){
               stage('ak') {
                 echo 'test';
               }
+              stage('ak2') {
+                echo '18'
+              }
             }
           }
         }
