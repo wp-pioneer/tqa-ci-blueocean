@@ -41,6 +41,15 @@ def doDynamicParallelSteps(){
           stage('newone2') {
             echo 'plz'
           }
+          stage('newone3') {
+            echo 'plz'
+          }
+          stage('newone4') {
+            echo 'plz'
+          }
+          stage('newone5') {
+            echo 'plz'
+          }
         }
       }
     }
