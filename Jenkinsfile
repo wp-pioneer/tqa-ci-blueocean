@@ -32,12 +32,16 @@ def doDynamicParallelSteps(){
   tests = [:]
   for(int i=0; i < list.size(); i++) {
     def name = list[i];
-    tests["${name}"] = stage('test'){
+    tests["${name}"] = {
+      stage(name){
+        node(name) {
         stages {
           stage('test2')
         }
+        }
       }
     }
+  }
 
   parallel tests
 }
