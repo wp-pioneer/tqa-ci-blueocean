@@ -33,10 +33,11 @@ def doDynamicParallelSteps(){
   for(int i=0; i < list.size(); i++) {
     def name = list[i];
     tests["${name}"] = {
-        agent { 
-          label "${name}"
       node {
         stage("${name}") {
+          agent {
+            label "${name}"
+          }
           script {
             stage("@${name} start") {
               echo 'starting..'
@@ -98,7 +99,6 @@ def doDynamicParallelSteps(){
         }
       }
     }
-  }
   }
 
   parallel tests
