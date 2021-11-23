@@ -35,7 +35,7 @@ def doDynamicParallelSteps(){
         label "${list[i]}"
         stage("${list[i]}") {
           script {
-            funcTest(list[i])
+            funcTest("${list[i]}")
           }
         }
       }
