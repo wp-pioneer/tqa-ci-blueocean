@@ -34,10 +34,12 @@ def doDynamicParallelSteps(){
     def name = list[i] as String;
     tests["${name}"] = {
       node {
-        label "${name}"
         stage("${name}") {
           script {
             stage("@${name} start") {
+              agent {
+                label "${name}"
+              }
               echo 'starting..'
               bat """
               taskkill /f /im BravoHotel*
