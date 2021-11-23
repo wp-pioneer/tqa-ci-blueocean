@@ -39,9 +39,23 @@ def doDynamicParallelSteps(){
           script {
             stage("@${name} start") {
               echo 'starting..'
+              bat """
+              taskkill /f /im BravoHotel*
+              taskkill /f /im AutoHotKey*
+              setlocal EnableDelayedExpansion
+              robocopy \\\\kate.oscarmike.io\\SharedDDC\\kate\\Auto c:\\Auto /MIR /s /TEE
+              exit /b 0
+              """
             }
             stage('run') {
-              echo 'plz'
+              echo 'running....'
+              bat """
+              setlocal EnableDelayedExpansion
+              taskkill /f /im BravoHotel*
+              taskkill /f /im AutoHotKey*
+              pushd \\Games\\RunGame_QA && RunGame_QA_Test.bat
+              exit /b 0
+              """
             }
             stage('update') {
               echo 'plz'
