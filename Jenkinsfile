@@ -33,11 +33,12 @@ def doDynamicParallelSteps(){
   for(int i=0; i < list.size(); i++) {
     def name = list[i] as String;
     tests["${name}"] = {
+      when {
+        beforeAgent true
+      }
       node("${name}") {
-        when {
-          beforeAgent true
-        }
         timeout(unit: 'MINUTES', time: 50 ) {
+          
           stage("${name}") {
             script {
               stage("@${name} start") {
