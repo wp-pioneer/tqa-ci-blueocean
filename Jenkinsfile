@@ -37,6 +37,37 @@ pipeline {
     preserveStashes(buildCount: 10)
   }
   stages {
+    stage('input.') {
+      steps {
+        script {
+          properties([
+              parameters([
+                  /*choice(
+                      choices: ['ONE', 'TWO'], 
+                      name: 'PARAMETER_01'
+                  ),
+                  booleanParam(
+                      defaultValue: true, 
+                      description: 'true 일경우 자동으로 시작, false 일경우 매칭만', 
+                      name: 'AUTO_START'
+                  ),
+                  text(
+                      defaultValue: '''
+                      this is a multi-line 
+                      string parameter example
+                      ''', 
+                        name: 'MULTI-LINE-STRING'
+                  ),
+                  string(
+                      defaultValue: 'scriptcrunch', 
+                      name: 'STRING-PARAMETER', 
+                      trim: true
+                  )*/
+              ])
+          ])
+        }
+      }
+    }
     stage('... parallels steps') {
       steps {
         script {
