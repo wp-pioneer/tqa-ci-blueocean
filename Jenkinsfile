@@ -24,6 +24,8 @@ def funcTest( final String name ) {
   echo "Element: ${name}"
 }
 
+inputResult = ""
+
 
 def doDynamicParallelSteps(){
   def list = ["HIGHTEST1", "HIGHTEST2", "HIGHTEST3", "HIGHTEST4", 
@@ -115,6 +117,16 @@ pipeline {
     cron('TZ=Asia/Seoul\n0 3-8 * * *')
   }
   stages {
+    stage('input parameter') {
+      input(
+        message: "자동으로 게임시작 여부?"
+        ok "yes, we should."
+        submitter "alice, bob"
+        parameters {
+          string(name: 'startAuto', defaultValue:true, description: 'WhoShould I say Hello to?')
+        }
+      )
+    }
     stage('병렬처리') {
       steps {
         script {
