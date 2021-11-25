@@ -33,8 +33,8 @@ def doDynamicParallelSteps(){
   for(int i=0; i < list.size(); i++) {
     def name = list[i] as String;
     tests["${name}"] = {
+    timeout(unit: 'MINUTES', time: 50 ) {
       node("${name}") {
-        timeout(unit: 'MINUTES', time: 50 ) {
           
           stage("${name}") {
             script {
@@ -117,9 +117,6 @@ pipeline {
   }
   stages {
     stage('병렬처리') {
-      when {
-        beforeAgent true
-      }
       steps {
         script {
           doDynamicParallelSteps()
