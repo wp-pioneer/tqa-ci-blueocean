@@ -36,7 +36,6 @@ def doDynamicParallelSteps(){
       timeout(unit: 'MINUTES', time: 50 ) {
         node("${name}") {
           stage("${name}") {
-            try {
             script {
               stage("@${name} start") {
                 echo 'starting..'
@@ -95,15 +94,6 @@ def doDynamicParallelSteps(){
                 exit /b 0
                 """
               }
-            }
-            } catch(exc) {
-              echo 'interrupt excpetion!!!!!'
-                bat """
-                taskkill /f /im robocopy*
-                taskkill /f /im BravoHotel*
-                taskkill /f /im AutoHotKey*
-                exit /b 0
-                """
             }
           }
         }
