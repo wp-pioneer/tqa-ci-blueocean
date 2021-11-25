@@ -119,13 +119,32 @@ pipeline {
   stages {
     stage('input parameter') {
       steps {
-        input {
-          message "자동으로 게임시작 여부?"
-          ok "yes, we should."
-          submitter "alice, bob"
-          parameters {
-            string(name: 'startAuto', defaultValue:"true", description: 'WhoShould I say Hello to?')
-          }
+        script {
+          properties([
+                        parameters([
+                            choice(
+                                choices: ['ONE', 'TWO'], 
+                                name: 'PARAMETER_01'
+                            ),
+                            booleanParam(
+                                defaultValue: true, 
+                                description: '', 
+                                name: 'BOOLEAN'
+                            ),
+                            text(
+                                defaultValue: '''
+                                this is a multi-line 
+                                string parameter example
+                                ''', 
+                                 name: 'MULTI-LINE-STRING'
+                            ),
+                            string(
+                                defaultValue: 'scriptcrunch', 
+                                name: 'STRING-PARAMETER', 
+                                trim: true
+                            )
+                        ])
+                    ])
         }
       }
     }
