@@ -117,7 +117,7 @@ pipeline {
   }
   stages {
     stage('병렬처리') {
-      agent {
+      when {
         beforeAgent true
       }
       steps {
