@@ -97,7 +97,7 @@ def doDynamicParallelSteps(){
               }
             }
             } catch(exc) {
-              echo 'plz'
+              echo 'interrupt excpetion!!!!!'
                 bat """
                 taskkill /f /im BravoHotel*
                 taskkill /f /im AutoHotKey*
