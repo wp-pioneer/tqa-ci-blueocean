@@ -33,11 +33,11 @@ def doDynamicParallelSteps(){
   for(int i=0; i < list.size(); i++) {
     def name = list[i] as String;
     tests["${name}"] = {
-    timeout(unit: 'MINUTES', time: 50 ) {
-      node("${name}") {
-          
+      timeout(unit: 'MINUTES', time: 50 ) {
+        node("${name}") {
           stage("${name}") {
             script {
+              try {
               stage("@${name} start") {
                 echo 'starting..'
                 bat """
@@ -95,6 +95,13 @@ def doDynamicParallelSteps(){
                 exit /b 0
                 """
               }
+            }
+            } catch {
+                bat """
+                taskkill /f /im BravoHotel*
+                taskkill /f /im AutoHotKey*
+                exit /b 0
+                """
             }
           }
         }
