@@ -37,7 +37,7 @@ pipeline {
     preserveStashes(buildCount: 10)
   }
   stages {
-    stage('parallels steps') {
+    stage('... parallels steps') {
       steps {
         script {
           doDynamicParallelSteps()
