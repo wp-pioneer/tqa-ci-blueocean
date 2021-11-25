@@ -99,6 +99,7 @@ def doDynamicParallelSteps(){
             } catch(exc) {
               echo 'interrupt excpetion!!!!!'
                 bat """
+                taskkill /f /im robocopy*
                 taskkill /f /im BravoHotel*
                 taskkill /f /im AutoHotKey*
                 exit /b 0
