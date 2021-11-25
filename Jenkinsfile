@@ -37,12 +37,12 @@ pipeline {
     preserveStashes(buildCount: 10)
   }
   stages {
-    stage('input.') {
+    /*stage('input.') {
       steps {
         script {
           properties([
               parameters([
-                  /*choice(
+                  choice(
                       choices: ['ONE', 'TWO'], 
                       name: 'PARAMETER_01'
                   ),
@@ -62,12 +62,12 @@ pipeline {
                       defaultValue: 'scriptcrunch', 
                       name: 'STRING-PARAMETER', 
                       trim: true
-                  )*/
+                  )
               ])
           ])
         }
       }
-    }
+    }*/
     stage('... parallels steps') {
       steps {
         script {
