@@ -18,7 +18,7 @@ def doDynamicParallelSteps(){
                 taskkill /f /im AutoHotKey*
                 setlocal EnableDelayedExpansion
                 robocopy \\\\kate.oscarmike.io\\SharedDDC\\kate\\Auto c:\\Auto /MIR /s /TEE
-                robocopy \\\\kate.oscarmike.io\\SharedDDC\\kate\\Games c:\\Games /s /TEE /Y
+                robocopy \\\\kate.oscarmike.io\\SharedDDC\\kate\\Games c:\\Games /s /TEE 
                 exit /b 0
                 """
               }
