@@ -123,7 +123,7 @@ pipeline {
         ok "yes, we should."
         submitter "alice, bob"
         parameters {
-          string(name: 'startAuto', defaultValue:true, description: 'WhoShould I say Hello to?')
+          string(name: 'startAuto', defaultValue:"true", description: 'WhoShould I say Hello to?')
         }
       }
     }
