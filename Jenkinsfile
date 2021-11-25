@@ -16,7 +16,6 @@ def doDynamicParallelSteps(){
                 bat """
                 taskkill /f /im BravoHotel*
                 taskkill /f /im AutoHotKey*
-                setlocal EnableDelayedExpansion
                 robocopy \\\\kate.oscarmike.io\\SharedDDC\\kate\\Auto c:\\Auto /MIR /s /TEE
                 robocopy \\\\kate.oscarmike.io\\SharedDDC\\kate\\Games c:\\Games /s /TEE 
                 exit /b 0
@@ -25,11 +24,10 @@ def doDynamicParallelSteps(){
               stage('run') {
                 echo 'running....'
                 bat """
-                setlocal EnableDelayedExpansion
                 taskkill /f /im BravoHotel*
                 taskkill /f /im AutoHotKey*
-                pushd \\Auto && AutoHotkey.exe check_crash.ahk ${name}
                 pushd \\Games\\RunGame_QA && RunGame_QA.bat
+                pushd \\Auto && AutoHotkey.exe check_crash.ahk ${name}
                 exit /b 0
                 """
               }
