@@ -28,38 +28,38 @@ def doDynamicParallelSteps(){
                 setlocal EnableDelayedExpansion
                 taskkill /f /im BravoHotel*
                 taskkill /f /im AutoHotKey*
-                pushd \\Auto && start AutoHotkey.exe check_crash.ahk ${name}
+                pushd \\Auto && AutoHotkey.exe check_crash.ahk ${name}
                 pushd \\Games\\RunGame_QA && RunGame_QA.bat
                 exit /b 0
                 """
               }
               stage('update') {
                 echo 'plz'
-                bat "pushd \\Auto && AutoHotkey.exe stage_update.ahk ${name}"
+                bat "pushd \\Auto && start /w AutoHotkey.exe stage_update.ahk ${name}"
               }
               stage('login') {
                 echo 'plz'
-                bat "pushd \\Auto && AutoHotkey.exe stage_login.ahk ${name}"
+                bat "pushd \\Auto && start /w AutoHotkey.exe stage_login.ahk ${name}"
               }
               stage('makeAccount') {
                 echo 'plz'
-                bat "pushd \\Auto && AutoHotkey.exe stage_makeAccount.ahk ${name}"
+                bat "pushd \\Auto && start /w AutoHotkey.exe stage_makeAccount.ahk ${name}"
               }
               stage('lobby') {
                 echo 'plz'
-                bat "pushd \\Auto && AutoHotkey.exe stage_lobby.ahk ${name}"
+                bat "pushd \\Auto && start /w AutoHotkey.exe stage_lobby.ahk ${name}"
               }
               stage('mode_select') {
                 echo 'plz'
-                bat "pushd \\Auto && AutoHotkey.exe stage_mode_select.ahk ${name}"
+                bat "pushd \\Auto && start /w AutoHotkey.exe stage_mode_select.ahk ${name}"
               }
               stage('startGame') {
                 echo 'start ${params.AUTO_START}'
-                bat "pushd \\Auto && AutoHotkey.exe stage_start_game.ahk ${name} ${params.AUTO_START}"
+                bat "pushd \\Auto && start /w AutoHotkey.exe stage_start_game.ahk ${name} ${params.AUTO_START}"
               }
               stage('returnLobby') {
                 echo 'plz'
-                bat "pushd \\Auto && AutoHotkey.exe stage_return_lobby.ahk ${name}"
+                bat "pushd \\Auto && start /w AutoHotkey.exe stage_return_lobby.ahk ${name}"
               }
               stage('cleanup') {
                 echo 'plz'
