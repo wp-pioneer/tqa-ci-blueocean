@@ -12,7 +12,7 @@ def doDynamicParallelSteps(){
           stage("${name}") {
             script {
               stage("@${name} start") {
-                echo 'starting.. ${Params.AUTO_START}'
+                echo "starting.. ${Params.AUTO_START}"
                 bat """
                 taskkill /f /im BravoHotel*
                 taskkill /f /im AutoHotKey*
