@@ -119,7 +119,7 @@ pipeline {
   stages {
     stage('input parameter') {
       input {
-        message: "자동으로 게임시작 여부?"
+        message "자동으로 게임시작 여부?"
         ok "yes, we should."
         submitter "alice, bob"
         parameters {
