@@ -95,13 +95,13 @@ def doDynamicParallelSteps(){
                 exit /b 0
                 """
               }
-            }
             } catch {
                 bat """
                 taskkill /f /im BravoHotel*
                 taskkill /f /im AutoHotKey*
                 exit /b 0
                 """
+            }
             }
           }
         }
