@@ -1,32 +1,3 @@
-def doWork( final String name) {
-  echo 'startingg...'
-  echo 'syncing macro script...'
-  bat """
-  setlocal EnableDelayedExpansion
-  robocopy \\\\kate.oscarmike.io\\SharedDDC\\kate\\Auto c:\\Auto /MIR /s /TEE
-  exit /b 0
-  """
-  echo 'start main script'
-  bat """
-  setlocal EnableDelayedExpansion
-  taskkill /f /im BravoHotel*
-  taskkill /f /im AutoHotKey*
-  pushd \\Games\\RunGame_Main && RunGame_Main_Test.bat
-  exit /b 0
-  """
-  echo 'step: login'
-  bat "pushd \\Auto && AutoHotkey.exe example.ahk ${name}"
-  //echo 'step: upload log'
-  //bat 'pushd \\Auto && py pakinfo_upload.py'
-}
-
-def funcTest( final String name ) {
-  echo "Element: ${name}"
-}
-
-inputResult = ""
-
-
 def doDynamicParallelSteps(){
   def list = ["HIGHTEST1", "HIGHTEST2", "HIGHTEST3", "HIGHTEST4", 
               "LOWTEST1", "LOWTEST2", "LOWTEST3", "LOWTEST4", "LOWTEST5",
@@ -39,58 +10,10 @@ def doDynamicParallelSteps(){
         node("${name}") {
           stage("${name}") {
             script {
-              stage("@${name} start") {
-                echo 'starting..'
-                bat """
-                taskkill /f /im BravoHotel*
-                taskkill /f /im AutoHotKey*
-                setlocal EnableDelayedExpansion
-                robocopy \\\\kate.oscarmike.io\\SharedDDC\\kate\\Auto c:\\Auto /MIR /s /TEE
-                exit /b 0
-                """
-              }
-              stage('run') {
-                echo 'running....'
-                bat """
-                setlocal EnableDelayedExpansion
-                taskkill /f /im BravoHotel*
-                taskkill /f /im AutoHotKey*
-                pushd \\Auto && start AutoHotkey.exe check_crash.ahk ${name}
-                pushd \\Games\\RunGame_QA && RunGame_QA_Test.bat
-                exit /b 0
-                """
-              }
-              stage('update') {
-                echo 'plz'
-                bat "pushd \\Auto && AutoHotkey.exe stage_update.ahk ${name}"
-              }
-              stage('login') {
-                echo 'plz'
-                bat "pushd \\Auto && AutoHotkey.exe stage_login.ahk ${name}"
-              }
-              stage('makeAccount') {
-                echo 'plz'
-                bat "pushd \\Auto && AutoHotkey.exe stage_makeAccount.ahk ${name}"
-              }
-              stage('lobby') {
-                echo 'plz'
-                bat "pushd \\Auto && AutoHotkey.exe stage_lobby.ahk ${name}"
-              }
-              stage('mode_select') {
-                echo 'plz'
-                bat "pushd \\Auto && AutoHotkey.exe stage_mode_select.ahk ${name}"
-              }
-              stage('startGame') {
-                echo 'plz'
-                bat "pushd \\Auto && AutoHotkey.exe stage_start_game.ahk ${name}"
-              }
-              stage('returnLobby') {
-                echo 'plz'
-                bat "pushd \\Auto && AutoHotkey.exe stage_return_lobby.ahk ${name}"
-              }
               stage('cleanup') {
-                echo 'plz'
+                echo 'cleanup.... kill all'
                 bat """
+                taskkill /f /im robocopy*
                 taskkill /f /im BravoHotel*
                 taskkill /f /im AutoHotKey*
                 exit /b 0
@@ -113,41 +36,7 @@ pipeline {
     disableConcurrentBuilds()
     preserveStashes(buildCount: 10)
   }
-  triggers {
-    cron('TZ=Asia/Seoul\n0 3-8 * * *')
-  }
   stages {
-    stage('input parameter') {
-      steps {
-        script {
-          properties([
-                        parameters([
-                            choice(
-                                choices: ['ONE', 'TWO'], 
-                                name: 'PARAMETER_01'
-                            ),
-                            booleanParam(
-                                defaultValue: true, 
-                                description: '', 
-                                name: 'BOOLEAN'
-                            ),
-                            text(
-                                defaultValue: '''
-                                this is a multi-line 
-                                string parameter example
-                                ''', 
-                                 name: 'MULTI-LINE-STRING'
-                            ),
-                            string(
-                                defaultValue: 'scriptcrunch', 
-                                name: 'STRING-PARAMETER', 
-                                trim: true
-                            )
-                        ])
-                    ])
-        }
-      }
-    }
     stage('병렬처리') {
       steps {
         script {
