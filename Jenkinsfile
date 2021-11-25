@@ -96,7 +96,7 @@ def doDynamicParallelSteps(){
                 """
               }
             }
-            } catch {
+            } catch(exc) {
               echo 'plz'
                 bat """
                 taskkill /f /im BravoHotel*
