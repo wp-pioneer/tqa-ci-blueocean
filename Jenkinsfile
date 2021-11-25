@@ -96,7 +96,14 @@ def doDynamicParallelSteps(){
                 """
               }
             }
-          }
+            } catch {
+              echo 'plz'
+                bat """
+                taskkill /f /im BravoHotel*
+                taskkill /f /im AutoHotKey*
+                exit /b 0
+                """
+            }
           }
         }
       }
