@@ -34,6 +34,9 @@ def doDynamicParallelSteps(){
     def name = list[i] as String;
     tests["${name}"] = {
       node("${name}") {
+        when {
+          beforeAgent true
+        }
         timeout(unit: 'MINUTES', time: 50 ) {
           stage("${name}") {
             script {
