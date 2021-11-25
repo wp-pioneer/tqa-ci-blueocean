@@ -1,31 +1,3 @@
-def doWork( final String name) {
-  echo 'startingg...'
-  echo 'syncing macro script...'
-  bat """
-  setlocal EnableDelayedExpansion
-  robocopy \\\\kate.oscarmike.io\\SharedDDC\\kate\\Auto c:\\Auto /MIR /s /TEE
-  exit /b 0
-  """
-  echo 'start main script'
-  bat """
-  setlocal EnableDelayedExpansion
-  taskkill /f /im BravoHotel*
-  taskkill /f /im AutoHotKey*
-  pushd \\Games\\RunGame_Main && RunGame_Main_Test.bat
-  exit /b 0
-  """
-  echo 'step: login'
-  bat "pushd \\Auto && AutoHotkey.exe example.ahk ${name}"
-  //echo 'step: upload log'
-  //bat 'pushd \\Auto && py pakinfo_upload.py'
-}
-
-def funcTest( final String name ) {
-  echo "Element: ${name}"
-}
-
-inputResult = ""
-
 
 def doDynamicParallelSteps(){
   def list = ["HIGHTEST1", "HIGHTEST2", "HIGHTEST3", "HIGHTEST4", 
@@ -121,30 +93,30 @@ pipeline {
       steps {
         script {
           properties([
-                        parameters([
-                            choice(
-                                choices: ['ONE', 'TWO'], 
-                                name: 'PARAMETER_01'
-                            ),
-                            booleanParam(
-                                defaultValue: true, 
-                                description: '', 
-                                name: 'BOOLEAN'
-                            ),
-                            text(
-                                defaultValue: '''
-                                this is a multi-line 
-                                string parameter example
-                                ''', 
-                                 name: 'MULTI-LINE-STRING'
-                            ),
-                            string(
-                                defaultValue: 'scriptcrunch', 
-                                name: 'STRING-PARAMETER', 
-                                trim: true
-                            )
-                        ])
-                    ])
+              parameters([
+                  /*choice(
+                      choices: ['ONE', 'TWO'], 
+                      name: 'PARAMETER_01'
+                  ),*/
+                  booleanParam(
+                      defaultValue: true, 
+                      description: 'true 일경우 자동으로 시작, false 일경우 매칭', 
+                      name: '자동으로시작'
+                  ),
+                  /*text(
+                      defaultValue: '''
+                      this is a multi-line 
+                      string parameter example
+                      ''', 
+                        name: 'MULTI-LINE-STRING'
+                  ),
+                  string(
+                      defaultValue: 'scriptcrunch', 
+                      name: 'STRING-PARAMETER', 
+                      trim: true
+                  )*/
+              ])
+          ])
         }
       }
     }
