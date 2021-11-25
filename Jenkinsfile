@@ -12,7 +12,7 @@ def doDynamicParallelSteps(){
           stage("${name}") {
             script {
               stage("@${name} start") {
-                echo "starting.. ${Params.AUTO_START}"
+                echo "starting.. ${params.AUTO_START}"
                 bat """
                 taskkill /f /im BravoHotel*
                 taskkill /f /im AutoHotKey*
@@ -89,7 +89,7 @@ pipeline {
     cron('TZ=Asia/Seoul\n0 3-8 * * *')
   }
   stages {
-    stage('input parameter') {
+    stage('input.') {
       steps {
         script {
           properties([
@@ -100,7 +100,7 @@ pipeline {
                   ),*/
                   booleanParam(
                       defaultValue: true, 
-                      description: 'true 일경우 자동으로 시작, false 일경우 매칭', 
+                      description: 'true 일경우 자동으로 시작, false 일경우 매칭만', 
                       name: 'AUTO_START'
                   ),
                   /*text(
