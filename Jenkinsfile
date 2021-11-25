@@ -12,7 +12,7 @@ def doDynamicParallelSteps(){
           stage("${name}") {
             script {
               stage("@${name} start") {
-                echo 'starting..'
+                echo 'starting.. ${Params.AUTO_START}'
                 bat """
                 taskkill /f /im BravoHotel*
                 taskkill /f /im AutoHotKey*
@@ -101,7 +101,7 @@ pipeline {
                   booleanParam(
                       defaultValue: true, 
                       description: 'true 일경우 자동으로 시작, false 일경우 매칭', 
-                      name: '자동으로시작'
+                      name: 'AUTO_START'
                   ),
                   /*text(
                       defaultValue: '''
