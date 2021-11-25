@@ -118,14 +118,14 @@ pipeline {
   }
   stages {
     stage('input parameter') {
-      input(
+      input {
         message: "자동으로 게임시작 여부?"
         ok "yes, we should."
         submitter "alice, bob"
         parameters {
           string(name: 'startAuto', defaultValue:true, description: 'WhoShould I say Hello to?')
         }
-      )
+      }
     }
     stage('병렬처리') {
       steps {
