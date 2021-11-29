@@ -26,11 +26,10 @@ def funcTest( final String name ) {
 
 
 def doDynamicParallelSteps(){
-  /*def list = ["HIGHTEST1", "HIGHTEST2", "HIGHTEST3", "HIGHTEST4", 
+  def list = ["HIGHTEST1", "HIGHTEST2", "HIGHTEST3", "HIGHTEST4", 
               "LOWTEST1", "LOWTEST2", "LOWTEST3", "LOWTEST4", "LOWTEST5",
-              "MIDDLETEST1", "MIDDLETEST2", "MIDDLETEST3", "MIDDLETEST4"]*/
+              "MIDDLETEST1", "MIDDLETEST2", "MIDDLETEST3", "MIDDLETEST4"]
 
-  def list = ["MIDDLETEST3", "HIGHTEST4"];
   tests = [:]
   for(int i=0; i < list.size(); i++) {
     def name = list[i] as String;
