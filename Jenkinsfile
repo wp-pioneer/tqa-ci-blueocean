@@ -55,7 +55,7 @@ def doDynamicParallelSteps(){
                 taskkill /f /im BravoHotel*
                 taskkill /f /im AutoHotKey*
                 pushd \\Auto && start AutoHotkey.exe check_crash.ahk ${name}
-                pushd \\Games\\RunGame_Dev && RunGame_Dev.bat
+                pushd \\Games\\RunGame_Dev && RunGame_Dev_kate.bat
                 exit /b 0
                 """
               }
@@ -63,8 +63,8 @@ def doDynamicParallelSteps(){
                 echo 'plz'
                 bat "pushd \\Auto && AutoHotkey.exe stage_update.ahk ${name}"
               }
-              stage('login') {
-                echo 'plz'
+              stage('dumpAllAreaRenderOverview') {
+                echo 'lets go'
                 bat "pushd \\Auto && AutoHotkey.exe dumpAllAreaRenderOverview.ahk ${name}"
               }
               stage('cleanup') {
