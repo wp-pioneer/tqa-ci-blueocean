@@ -35,6 +35,7 @@ pipeline {
   options {
     disableConcurrentBuilds()
     preserveStashes(buildCount: 10)
+    overrideIndexTriggers(false)
   }
   stages {
     stage('input.') {
