@@ -1,7 +1,7 @@
 
 def doDynamicParallelSteps(){
   def list = ["HIGHTEST1", "HIGHTEST2", "HIGHTEST3", "HIGHTEST4", 
-              //"LOWTEST1", "LOWTEST2", "LOWTEST3", "LOWTEST4", "LOWTEST5",
+              "LOWTEST1", "LOWTEST2", "LOWTEST3", "LOWTEST4", "LOWTEST5",
               "MIDDLETEST1", "MIDDLETEST2", "MIDDLETEST3", "MIDDLETEST4"]              
   tests = [:]
   for(int i=0; i < list.size(); i++) {
@@ -23,8 +23,6 @@ def doDynamicParallelSteps(){
               }
               stage('run') {
                 echo 'running....'
-
-                if( name.contains("1") || name.contains("2") ) {
                   bat """
                   taskkill /f /im BravoHotel*
                   taskkill /f /im AutoHotKey*
@@ -32,15 +30,6 @@ def doDynamicParallelSteps(){
                   pushd \\Auto && start AutoHotkey.exe check_crash.ahk ${name}
                   exit /b 0
                   """
-                } else {
-                  bat """
-                  taskkill /f /im BravoHotel*
-                  taskkill /f /im AutoHotKey*
-                  pushd \\Games\\RunGame_Dev && RunGame_Dev_kate.bat
-                  pushd \\Auto && start AutoHotkey.exe check_crash.ahk ${name}
-                  exit /b 0
-                  """
-                }
               }
               stage('update') {
                 echo 'plz'
