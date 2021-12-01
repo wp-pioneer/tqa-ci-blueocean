@@ -23,13 +23,24 @@ def doDynamicParallelSteps(){
               }
               stage('run') {
                 echo 'running....'
-                bat """
-                taskkill /f /im BravoHotel*
-                taskkill /f /im AutoHotKey*
-                pushd \\Games\\RunGame_Dev && RunGame_Dev_kate.bat
-                pushd \\Auto && start AutoHotkey.exe check_crash.ahk ${name}
-                exit /b 0
-                """
+
+                if( name.contains("1") || name.contains("2") ) {
+                  bat """
+                  taskkill /f /im BravoHotel*
+                  taskkill /f /im AutoHotKey*
+                  pushd \\Games\\RunGame_Dev && RunGame_Dev_unit_test1.bat
+                  pushd \\Auto && start AutoHotkey.exe check_crash.ahk ${name}
+                  exit /b 0
+                  """
+                } else {
+                  bat """
+                  taskkill /f /im BravoHotel*
+                  taskkill /f /im AutoHotKey*
+                  pushd \\Games\\RunGame_Dev && RunGame_Dev_kate.bat
+                  pushd \\Auto && start AutoHotkey.exe check_crash.ahk ${name}
+                  exit /b 0
+                  """
+                }
               }
               stage('update') {
                 echo 'plz'
