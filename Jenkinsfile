@@ -1,7 +1,7 @@
 
 def doDynamicParallelSteps(){
   def list = ["HIGHTEST1", "HIGHTEST2", "HIGHTEST3", "HIGHTEST4", 
-              "LOWTEST1", "LOWTEST2", "LOWTEST3", "LOWTEST4", "LOWTEST5",
+              //"LOWTEST1", "LOWTEST2", "LOWTEST3", "LOWTEST4", "LOWTEST5",
               "MIDDLETEST1", "MIDDLETEST2", "MIDDLETEST3", "MIDDLETEST4"]              
   tests = [:]
   for(int i=0; i < list.size(); i++) {
@@ -71,7 +71,7 @@ def doDynamicParallelSteps(){
                 bat "pushd \\Auto && AutoHotkey.exe stage_return_lobby.ahk ${name}"
               }
               stage('cleanup') {
-                echo 'plz'
+                echo 'cleanup11'
                 bat """
                 taskkill /f /im BravoHotel*
                 taskkill /f /im AutoHotKey*
