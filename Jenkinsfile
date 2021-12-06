@@ -85,9 +85,9 @@ pipeline {
     disableConcurrentBuilds()
     preserveStashes(buildCount: 10)
   }
-  /*triggers {
-    cron('TZ=Asia/Seoul\n0 3-8 * * *')
-  }*/
+  triggers {
+    cron('TZ=Asia/Seoul\n0 9-23 * * *')
+  }
   stages {
     stage('input.') {
       steps {
