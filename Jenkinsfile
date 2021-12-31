@@ -56,7 +56,7 @@ def doDynamicParallelSteps(){
                 taskkill /f /im BravoHotel*
                 taskkill /f /im AutoHotKey*
                 pushd \\Auto && start AutoHotkey.exe check_crash.ahk ${name}
-                pushd \\Games\\RunGame_Dev && RunGame_Dev_kate.bat
+                pushd \\Games\\RunGame_QA && RunGame_QA.bat
                 exit /b 0
                 """
               }
