@@ -93,9 +93,9 @@ pipeline {
     disableConcurrentBuilds()
     preserveStashes(buildCount: 10)
   }
-  //triggers {
-    //cron('TZ=Asia/Seoul\n0 3-8 * * *')
-  //}
+  triggers {
+    cron('TZ=Asia/Seoul\n0 10 * * *')
+  }
   stages {
     stage('병렬처리') {
       steps {
