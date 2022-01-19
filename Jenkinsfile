@@ -98,7 +98,7 @@ pipeline {
     preserveStashes(buildCount: 10)
   }
   triggers {
-    cron('TZ=Asia/Seoul\n0 0-2 * * *')
+    cron('TZ=Asia/Seoul\n0 1-5 * * *')
   }
   stages {
     stage('input.') {
