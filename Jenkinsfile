@@ -1,8 +1,20 @@
 
+//@NonCPS
+def onlineNodeNames() {
+    String[] free_nodes = []
+     for (Node node in jenkins.model.Jenkins.instance.nodes) {
+         // Make sure slave is online
+         if (node != null && node.toComputer() != null && node.toComputer().online) {
+             free_nodes += node.name 
+         }
+     }
+    return free_nodes
+}
+
 def doDynamicParallelSteps(){
-  def list = ["HIGHTEST1", "HIGHTEST2", "HIGHTEST3", "HIGHTEST4", 
-              "LOWTEST1", "LOWTEST2", "LOWTEST3", "LOWTEST4", "LOWTEST5",
-              "MIDDLETEST1", "MIDDLETEST2", "MIDDLETEST3", "MIDDLETEST4"]              
+
+  def list = onlineNodeNames();
+
   tests = [:]
   for(int i=0; i < list.size(); i++) {
     def name = list[i] as String;
