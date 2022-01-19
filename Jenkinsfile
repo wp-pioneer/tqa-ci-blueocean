@@ -52,7 +52,7 @@ def doDynamicParallelSteps(){
               }
               stage('dumpAllAreaRenderOverview') {
                 echo 'lets go'
-                bat "pushd \\Auto && AutoHotkey.exe dumpAllAreaRenderOverview.ahk ${name}"
+                bat "pushd \\Auto && AutoHotkey.exe dumpAllAreaRenderOverview.ahk ${name} QA"
               }
               stage('cleanup') {
                 echo 'plz'
