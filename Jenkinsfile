@@ -14,7 +14,7 @@ def onlineNodeNames() {
 
 def doDynamicParallelSteps(){
 
-  def list onlineNodeNames();
+  def list = onlineNodeNames();
 
   tests = [:]
   for(int i=0; i < list.size(); i++) {
