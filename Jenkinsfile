@@ -80,7 +80,7 @@ pipeline {
     preserveStashes(buildCount: 10)
   }
   triggers {
-    cron('TZ=Asia/Seoul\n0 24 * * *')
+    cron('TZ=Asia/Seoul\n0 0 * * *')
   }
   stages {
     stage('병렬처리') {
