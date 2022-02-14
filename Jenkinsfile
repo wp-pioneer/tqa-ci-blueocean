@@ -51,6 +51,9 @@ pipeline {
     overrideIndexTriggers(false)
   }
   stages {
+    stage('start') {
+      steps { slackSend (channel: '#tqa-ci', color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})") }
+    }
     stage('input.') {
       steps {
         script {
