@@ -76,6 +76,7 @@ def doDynamicParallelSteps(){
 pipeline {
   agent none
   options {
+    overrideIndexTriggers(false)
     disableConcurrentBuilds()
     preserveStashes(buildCount: 10)
   }
