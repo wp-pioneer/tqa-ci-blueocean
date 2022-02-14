@@ -3,12 +3,13 @@
 //@NonCPS
 def onlineNodeNames() {
     String[] free_nodes = []
-     for (Node node in ['HIGHTEST1', 'LOWTEST1', 'MODDLETEST1'] ) {
-     //jenkins.model.Jenkins.instance.nodes) {
+     for (Node node in jenkins.model.Jenkins.instance.nodes) {
          // Make sure slave is online
-         if (node != null && node.toComputer() != null && node.toComputer().online) {
-             free_nodes += node.name 
-         }
+        if( ['HIGHTEST1', 'MIDDLETEST1', 'LOWTEST1'].contains( node.name) ) {
+          if (node != null && node.toComputer() != null && node.toComputer().online) {
+            free_nodes += node.name 
+          }
+        }
      }
     return free_nodes
 }
