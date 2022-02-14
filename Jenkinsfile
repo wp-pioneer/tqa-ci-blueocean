@@ -5,7 +5,7 @@ def onlineNodeNames() {
     String[] free_nodes = []
      for (Node node in jenkins.model.Jenkins.instance.nodes) {
          // Make sure slave is online
-        if( ['HIGHTEST1', 'MIDDLETEST1', 'LOWTEST1'].contains( node.name) ) {
+        if( ['HIGHTEST2', 'MIDDLETEST2', 'LOWTEST2'].contains( node.name) ) {
           if (node != null && node.toComputer() != null && node.toComputer().online) {
             free_nodes += node.name 
           }
@@ -44,7 +44,7 @@ def doDynamicParallelSteps(){
                 taskkill /f /im BravoHotel*
                 taskkill /f /im AutoHotKey*
                 pushd \\Auto && start AutoHotkey.exe check_crash.ahk ${name}
-                pushd \\Games\\RunGame_QA && RunGame_QA_Test_assetmonitoring.bat
+                pushd \\Games\\RunGame_Main && RunGame_Main_Test_assetmonitoring.bat
                 exit /b 0
                 """
               }
