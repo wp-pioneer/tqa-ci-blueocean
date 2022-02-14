@@ -42,18 +42,18 @@ def doDynamicParallelSteps(){
                 taskkill /f /im BravoHotel*
                 taskkill /f /im AutoHotKey*
                 pushd \\Auto && start AutoHotkey.exe check_crash.ahk ${name}
-                pushd \\Games\\RunGame_QA && RunGame_QA_Test.bat
+                pushd \\Games\\RunGame_QA && RunGame_QA_Test_assetmonitoring.bat
                 exit /b 0
                 """
               }
-              stage('update') {
+              /*stage('update') {
                 echo 'plz'
                 bat "pushd \\Auto && start /w AutoHotkey.exe stage_update.ahk ${name}"
               }
               stage('dumpAllAreaRenderOverview') {
                 echo 'lets go'
                 bat "pushd \\Auto && AutoHotkey.exe dumpAllAreaRenderOverview.ahk ${name} QA"
-              }
+              }*/
               stage('cleanup') {
                 echo 'plz'
                 bat """
