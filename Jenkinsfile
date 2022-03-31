@@ -45,7 +45,7 @@ def doDynamicParallelSteps(){
               }
               stage('update') {
                 echo 'plz'
-                bat "pushd \\Auto && start /w AutoHotkey.exe stage_update.ahk ${name}"
+                bat "pushd \\Auto && start /w AutoHotkey.exe stage_update2.ahk ${name}"
               }
               /*stage('login') {
                 echo 'plz'
