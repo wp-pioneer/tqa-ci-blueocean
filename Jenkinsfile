@@ -71,6 +71,9 @@ def doDynamicParallelSteps(){
                 echo 'plz'
                 bat "pushd \\Auto && start /w AutoHotkey.exe stage_return_lobby.ahk ${name}"
               }*/
+              stage('waiting client...') {
+                 bat "\\Games\\WaitBravoHotelProcess.bat"
+              }
               stage('cleanup') {
                 echo 'cleanup11'
                 bat """
