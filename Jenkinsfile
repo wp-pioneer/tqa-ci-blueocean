@@ -33,21 +33,20 @@ def doDynamicParallelSteps(){
                 exit /b 0
                 """
               }
-              stage('run') {
+              stage('run & update') {
                 echo 'running....'
                   bat """
                   taskkill /f /im BravoHotel*
                   taskkill /f /im AutoHotKey*
                   pushd \\Games\\RunGame_Dev && RunGame_Dev_Tqa.bat ${name}
-                  pushd \\Auto && start AutoHotkey.exe check_crash.ahk ${name}
                   exit /b 0
                   """
               }
-              stage('update') {
+              /*stage('update') {
                 echo 'plz'
                 bat "pushd \\Auto && start /w AutoHotkey.exe stage_update2.ahk ${name}"
               }
-              /*stage('login') {
+              stage('login') {
                 echo 'plz'
                 bat "pushd \\Auto && start /w AutoHotkey.exe stage_login.ahk ${name}"
               }
@@ -62,7 +61,7 @@ def doDynamicParallelSteps(){
               stage('mode_select') {
                 echo 'plz'
                 bat "pushd \\Auto && start /w AutoHotkey.exe stage_mode_select.ahk ${name}"
-              }*/
+              }
               stage('startGame') {
                 echo 'start ${params.AUTO_START}'
                 bat "pushd \\Auto && start /w AutoHotkey.exe stage_start_game3.ahk ${name} ${params.AUTO_START}"
@@ -70,7 +69,7 @@ def doDynamicParallelSteps(){
               stage('returnLobby') {
                 echo 'plz'
                 bat "pushd \\Auto && start /w AutoHotkey.exe stage_return_lobby.ahk ${name}"
-              }
+              }*/
               stage('cleanup') {
                 echo 'cleanup11'
                 bat """
