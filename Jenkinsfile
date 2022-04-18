@@ -39,7 +39,7 @@ def doDynamicParallelSteps(){
                   bat """
                   taskkill /f /im BravoHotel*
                   taskkill /f /im AutoHotKey*
-                  net use \\\\oscarmike.io\\\\BravoHotel_Distribution ",q4W!q" /user:wonderpeople
+                  net use \\\\oscarmike.io ",q4W!q" /user:wonderpeople
                   pushd \\Games\\RunGame_Dev && RunGame_Dev_Tqa_nopatch.bat ${name}
                   pushd \\Auto && start AutoHotkey.exe check_crash.ahk ${name}
                   exit /b 0
