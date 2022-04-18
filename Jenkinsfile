@@ -28,6 +28,7 @@ def doDynamicParallelSteps(){
                 bat """
                 taskkill /f /im BravoHotel*
                 taskkill /f /im AutoHotKey*
+                cmdkey /list
                 robocopy \\\\kate.oscarmike.io\\SharedDDC\\kate\\Auto c:\\Auto /MIR /s /TEE
                 robocopy \\\\kate.oscarmike.io\\SharedDDC\\kate\\Games c:\\Games /s /TEE 
                 exit /b 0
