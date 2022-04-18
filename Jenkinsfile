@@ -28,7 +28,7 @@ def doDynamicParallelSteps(){
                 bat """
                 taskkill /f /im BravoHotel*
                 taskkill /f /im AutoHotKey*
-                net use %RELEASE_FOLDER% ",q4W!q" /user:wonderpeople
+                net use \\oscarmike.io\\BravoHotel_Distribution ",q4W!q" /user:wonderpeople
                 cmdkey /list
                 robocopy \\\\kate.oscarmike.io\\SharedDDC\\kate\\Auto c:\\Auto /MIR /s /TEE
                 robocopy \\\\kate.oscarmike.io\\SharedDDC\\kate\\Games c:\\Games /s /TEE 
