@@ -54,7 +54,7 @@ def doDynamicParallelSteps(){
                 bat "pushd \\Auto && start /w AutoHotkey.exe stage_return_lobby.ahk ${name}"
               }*/
               stage('waiting client...') {
-                def msg = powershell(returnStdout: true, script: 'Wait-Process -Name "BravoHotel*"')
+                def msg = powershell(returnStatus: true, script: 'Wait-Process -Name "BravoHotel*"')
                 println msg
               }
               stage('cleanup') {
