@@ -1,4 +1,5 @@
 
+
 //@NonCPS
 def onlineNodeNames() {
     String[] free_nodes = []
@@ -30,6 +31,9 @@ def doDynamicParallelSteps(){
             script {
               stage("start") {
                 echo "starting.. ${params.AUTO_START}"
+                def computer = jenkins.model.Jenkins.instance.getComputer(env.NODE_NAME)
+
+                echo "info - ${computer.countBusy()}"
                 bat """
                 taskkill /f /im BravoHotel*
                 taskkill /f /im AutoHotKey*
