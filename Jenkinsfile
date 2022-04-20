@@ -14,9 +14,6 @@ def onlineNodeNames() {
 def doDynamicParallelSteps(){
 
   def list = onlineNodeNames()
-  def totalCount = line.length()
-  def inGameCount = 0
-  def isStarted = 0
 
   tests = [:]
   for(int i=0; i < list.size(); i++) {
