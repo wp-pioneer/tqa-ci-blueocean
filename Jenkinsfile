@@ -50,7 +50,7 @@ def doDynamicParallelSteps(){
                   pushd \\Games\\RunGame_Dev
                   net use \\oscarmike.io\\BravoHotel_Distribution ",q4W!q" /user:wonderpeople
                   set ScriptsFolder=\\\\oscarmike.io\\BravoHotel_Distribution\\Scripts_QA\\PackagedClient
-                  set DestFolder=%cd%\\\Scripts
+                  set DestFolder=%cd%\\\\Scripts
 
                   robocopy %ScriptsFolder% %DestFolder% /MIR
 
