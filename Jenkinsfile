@@ -47,7 +47,7 @@ def doDynamicParallelSteps(){
                   taskkill /f /im AutoHotKey*
                   
                   pushd \\Auto && start AutoHotkey.exe check_crash.ahk ${name}
-                  pushd \\Games\\RunGame_Dev && RunGame_Dev_Tqa.bat ${name} ${port}
+                  pushd \\Games\\RunGame_Dev && RunGame_Dev_Tqa_nopatch.bat ${name} ${port}
                   """
               }
               stage('update') {
