@@ -46,7 +46,8 @@ def doDynamicParallelSteps(){
                   taskkill /f /im BravoHotel*
                   taskkill /f /im AutoHotKey*
                   
-                  echo pushd \\Auto && start AutoHotkey.exe check_crash.ahk ${name}
+                  pushd \\Auto && start AutoHotkey.exe check_crash.ahk ${name}
+                  pushd \\Games\\RunGame_Dev
                   net use \\oscarmike.io\BravoHotel_Distribution ",q4W!q" /user:wonderpeople
                   set ScriptsFolder=\\oscarmike.io\BravoHotel_Distribution\Scripts_QA\PackagedClient
                   set DestFolder=%cd%\Scripts
