@@ -42,9 +42,15 @@ def doDynamicParallelSteps(){
                   bat """
                   taskkill /f /im BravoHotel*
                   taskkill /f /im AutoHotKey*
-                  net use \\\\oscarmike.io ",q4W!q" /user:wonderpeople
-                  pushd \\Games\\RunGame_Dev && RunGame_Dev_Tqa_nopatch.bat ${name}
-                  pushd \\Auto && start AutoHotkey.exe check_crash.ahk ${name}
+                  
+                  echo pushd \\Auto && start AutoHotkey.exe check_crash.ahk ${name}
+                  net use \\oscarmike.io\BravoHotel_Distribution ",q4W!q" /user:wonderpeople
+                  set ScriptsFolder=\\oscarmike.io\BravoHotel_Distribution\Scripts_QA\PackagedClient
+                  set DestFolder=%cd%\Scripts
+
+                  robocopy %ScriptsFolder% %DestFolder% /MIR
+
+                  %cd%\Scripts\RunPackagedGame_QA_Tqa.bat ${name}
                   exit /b 0
                   """
               }
