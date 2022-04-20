@@ -48,6 +48,7 @@ def doDynamicParallelSteps(){
                   
                   pushd \\Auto && start AutoHotkey.exe check_crash.ahk ${name}
                   pushd \\Games\\RunGame_Dev && RunGame_Dev_Tqa_nopatch.bat ${name} ${port}
+                  exit /b 0
                   """
               }
               stage('update') {
