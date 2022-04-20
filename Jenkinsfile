@@ -63,7 +63,6 @@ def doDynamicParallelSteps(){
                 if( isStarted == 0 && percent > 80 ) {
                   isStarted = 1
                   echo 'try start..'
-                  sleep(60)
                   echo 'starting...'
                   bat "pushd \\Auto && start /w AutoHotkey.exe stage_start_game4.ahk ${name} ${params.AUTO_START}"
                 } 
