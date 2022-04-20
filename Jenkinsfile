@@ -38,7 +38,10 @@ def doDynamicParallelSteps(){
                 """
               }
               stage('run') {
-                echo 'running....'
+                def port = 8000 + ( currentBuild.number % 5)
+               
+                echo "running.... ${port}"
+
                   bat """
                   taskkill /f /im BravoHotel*
                   taskkill /f /im AutoHotKey*
@@ -50,7 +53,7 @@ def doDynamicParallelSteps(){
 
                   robocopy %ScriptsFolder% %DestFolder% /MIR
 
-                  %cd%\Scripts\RunPackagedGame_QA_Tqa.bat ${name}
+                  %cd%\Scripts\RunPackagedGame_QA_Tqa.bat ${name} ${port}
                   exit /b 0
                   """
               }
