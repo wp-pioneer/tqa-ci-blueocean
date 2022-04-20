@@ -47,15 +47,7 @@ def doDynamicParallelSteps(){
                   taskkill /f /im AutoHotKey*
                   
                   pushd \\Auto && start AutoHotkey.exe check_crash.ahk ${name}
-                  pushd \\Games\\RunGame_Dev
-                  net use \\oscarmike.io ",q4W!q" /user:wonderpeople
-                  set ScriptsFolder=\\\\oscarmike.io\\BravoHotel_Distribution\\Scripts_QA\\PackagedClient
-                  set DestFolder=%cd%\\\\Scripts
-
-                  robocopy %ScriptsFolder% %DestFolder% /MIR
-
-                  cmd /c %cd%\\Scripts\\RunPackagedGame_QA_Tqa.bat ${name} ${port}
-                  exit /b 0
+                  pushd \\Games\\RunGame_Dev && RunGame_Dev_Tqa.bat ${name} ${port}
                   """
               }
               stage('update') {
