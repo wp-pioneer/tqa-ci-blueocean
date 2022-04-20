@@ -52,22 +52,6 @@ def doDynamicParallelSteps(){
                 echo 'plz'
                 bat "pushd \\Auto && start /w AutoHotkey.exe stage_update2.ahk ${name}"
               }
-              stage("inGame - ${i}/${totalCount}") {
-                echo "start ${params.AUTO_START}"
-                bat "pushd \\Auto && start /w AutoHotkey.exe stage_ready_game.ahk ${name} ${params.AUTO_START}"
-                inGameCount += 1;
-              }
-              
-              stage("start - ${inGameCount}/${totalCount}") {
-                def percent = ((inGameCount / totalCount ) * 100)
-                if( isStarted == 0 && percent > 80 ) {
-                  isStarted = 1
-                  echo 'try start..'
-                  echo 'starting...'
-                  bat "pushd \\Auto && start /w AutoHotkey.exe stage_start_game4.ahk ${name} ${params.AUTO_START}"
-                } 
-              }
-              
               /*stage('returnLobby') {
                 echo 'plz'
                 bat "pushd \\Auto && start /w AutoHotkey.exe stage_return_lobby.ahk ${name}"
