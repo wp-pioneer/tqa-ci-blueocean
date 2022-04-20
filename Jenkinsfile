@@ -52,6 +52,13 @@ def doDynamicParallelSteps(){
                 echo 'plz'
                 bat "pushd \\Auto && start /w AutoHotkey.exe stage_update2.ahk ${name}"
               }
+
+              stage("inGame - ${i}/${totalCount}") {
+              }
+              
+              stage("start - ${inGameCount}/${totalCount}") {
+              }
+              
               /*stage('returnLobby') {
                 echo 'plz'
                 bat "pushd \\Auto && start /w AutoHotkey.exe stage_return_lobby.ahk ${name}"
