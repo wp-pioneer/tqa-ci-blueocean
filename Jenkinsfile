@@ -14,6 +14,9 @@ def onlineNodeNames() {
 def doDynamicParallelSteps(){
 
   def list = onlineNodeNames();
+  def totalCount = list.size();
+  def inGameCount = 0;
+  def isStarted = 0;
 
   tests = [:]
   for(int i=0; i < list.size(); i++) {
@@ -49,6 +52,23 @@ def doDynamicParallelSteps(){
                 echo 'plz'
                 bat "pushd \\Auto && start /w AutoHotkey.exe stage_update2.ahk ${name}"
               }
+              stage("inGame - ${i}/${totalCount}") {
+                echo "start ${params.AUTO_START}"
+                bat "pushd \\Auto && start /w AutoHotkey.exe stage_ready_game.ahk ${name} ${params.AUTO_START}"
+                inGameCount += 1;
+              }
+              
+              stage("start - ${inGameCount}/${totalCount}") {
+                def percent = ((inGameCount / totalCount ) * 100)
+                if( isStarted == 0 && percent > 80 ) {
+                  isStarted = 1
+                  echo 'try start..'
+                  sleep(60)
+                  echo 'starting...'
+                  bat "pushd \\Auto && start /w AutoHotkey.exe stage_start_game4.ahk ${name} ${params.AUTO_START}"
+                } 
+              }
+              
               /*stage('returnLobby') {
                 echo 'plz'
                 bat "pushd \\Auto && start /w AutoHotkey.exe stage_return_lobby.ahk ${name}"
