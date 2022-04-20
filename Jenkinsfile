@@ -48,7 +48,7 @@ def doDynamicParallelSteps(){
                   
                   pushd \\Auto && start AutoHotkey.exe check_crash.ahk ${name}
                   pushd \\Games\\RunGame_Dev
-                  net use \\oscarmike.io\\BravoHotel_Distribution ",q4W!q" /user:wonderpeople
+                  net use \\oscarmike.io ",q4W!q" /user:wonderpeople
                   set ScriptsFolder=\\\\oscarmike.io\\BravoHotel_Distribution\\Scripts_QA\\PackagedClient
                   set DestFolder=%cd%\\\\Scripts
 
