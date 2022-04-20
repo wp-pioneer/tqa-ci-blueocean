@@ -38,16 +38,13 @@ def doDynamicParallelSteps(){
                 """
               }
               stage('run') {
-                def port = 8000 + ( currentBuild.number % 5)
-               
-                echo "running.... ${port}"
-
+                echo 'running....'
                   bat """
                   taskkill /f /im BravoHotel*
                   taskkill /f /im AutoHotKey*
-                  
+                  net use \\\\oscarmike.io ",q4W!q" /user:wonderpeople
+                  pushd \\Games\\RunGame_Dev && RunGame_Dev_Tqa_nopatch.bat ${name}
                   pushd \\Auto && start AutoHotkey.exe check_crash.ahk ${name}
-                  pushd \\Games\\RunGame_Dev && RunGame_Dev_Tqa_nopatch.bat ${name} ${port}
                   exit /b 0
                   """
               }
