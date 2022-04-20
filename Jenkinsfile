@@ -5,8 +5,9 @@ def onlineNodeNames() {
      for (Node node in jenkins.model.Jenkins.instance.nodes) {
          // Make sure slave is online
          if (node != null && node.toComputer() != null && node.toComputer().online) {
-             free_nodes += node.name 
-             println "${node.countBusy()}, ${node.countIdle()}, ${node.countExecutors()}";
+             free_nodes += node.name
+             def computer = node.toComputer() 
+             println "${computer.countBusy()}, ${computer.countIdle()}, ${computer.countExecutors()}";
          }
      }
     return free_nodes
