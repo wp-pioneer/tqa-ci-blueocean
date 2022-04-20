@@ -60,10 +60,10 @@ def doDynamicParallelSteps(){
               
               stage("start - ${inGameCount}") {
                 def percent = ((inGameCount / totalCount ) * 100)
-                if( isStarted == 0 && percent > 80 ) {
+                if( isStarted == 0 && percent > 85 ) {
                   isStarted = 1
                   echo 'try start..'
-                  sleep(60)
+                  sleep(180)
                   echo 'starting...'
                   bat "pushd \\Auto && start /w AutoHotkey.exe stage_start_game4.ahk ${name} ${params.AUTO_START}"
                 } 
