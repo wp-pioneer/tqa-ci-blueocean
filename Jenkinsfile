@@ -54,7 +54,7 @@ def doDynamicParallelSteps(){
 
                   robocopy %ScriptsFolder% %DestFolder% /MIR
 
-                  start cmd /c %cd%\\Scripts\\RunPackagedGame_QA_Tqa.bat ${name} ${port}
+                  start /w cmd /c %cd%\\Scripts\\RunPackagedGame_QA_Tqa.bat ${name} ${port}
                   exit /b 0
                   """
               }
