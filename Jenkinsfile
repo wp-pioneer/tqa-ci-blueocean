@@ -47,7 +47,7 @@ def doDynamicParallelSteps(){
                 """
               }
               stage('run') {
-                def port = 8800 + ( currentBuild.number % 5)
+                def port = 8800 + ( currentBuild.number % 3)
                
                 echo "running.... ${port}"
 
