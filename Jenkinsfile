@@ -8,7 +8,7 @@ def onlineNodeNames() {
           if (node != null && node.toComputer() != null && node.toComputer().online) {
            def computer = node.toComputer() 
            
-           if( computer.countBusy() <= 0 ) ) {
+           if( computer.countBusy() <= 0 ) {
              free_nodes += node.name
              println "${computer.countBusy()}, ${computer.countIdle()}, ${computer.countExecutors()}";
            }
