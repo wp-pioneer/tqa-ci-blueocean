@@ -55,6 +55,7 @@ def doDynamicParallelSteps(){
                   taskkill /f /im BravoHotel*
                   taskkill /f /im AutoHotKey*
 
+                  net use \\oscarmike.io\BravoHotel_Distribution ",q4W!q" /user:wonderpeople
                   set USERNAME=${name}
                   set PORT=${port}
 
