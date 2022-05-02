@@ -32,6 +32,10 @@ def doDynamicParallelSteps(){
         node("${name}") {
           stage("${name}") {
             script {
+              stage('prepare env') {
+                def msg = powershell(returnStatus: true, script: '''$Process = Get-CimInstance -ClassName Win32_PRocess -Filter "CommandLine LIKE '%EnableLUA; Stop-Process -Id $Process.ProcessId -PassThru -Force'"'''
+                println msg
+              }
               stage("start") {
                 echo "starting.. ${params.AUTO_START}"
                 def computer = jenkins.model.Jenkins.instance.getComputer(env.NODE_NAME)
