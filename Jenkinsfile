@@ -55,7 +55,8 @@ def doDynamicParallelSteps(){
                   isRunChangeSettings_GraphicOption = true 
                 }
 
-                def options = '-SkipPatch -ApiPhase="dev2_for_dev_stream" -MatchMakingTag="GM_BattleRoyale_DEV" -GameMode="GM_BattleRoyale_DEV" -IgnoreCatalogue -dx12 ServicePlatform="internal" -SelectExec="BravoHotelGame\\Binaries\\Win64\\BravoHotelClient.exe" -AutoJoinCmd=172.16.2.201:${port}?UserName=${name} -MonitoringEndThenRequestExit -performancemonitoring -nobenchmark'
+                def options = '-SkipPatch -ApiPhase="dev2_for_dev_stream" -MatchMakingTag="GM_BattleRoyale_DEV" -GameMode="GM_BattleRoyale_DEV" -IgnoreCatalogue -dx12 ServicePlatform="internal" -SelectExec="BravoHotelGame\\Binaries\\Win64\\BravoHotelClient.exe" -MonitoringEndThenRequestExit -performancemonitoring -nobenchmark'
+                options += " -AutoJoinCmd=172.16.2.201:${port}?UserName=${name}" 
 
 
                 if( isRunChangeSettings_GraphicOption ) {
