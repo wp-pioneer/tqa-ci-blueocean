@@ -33,12 +33,14 @@ def doDynamicParallelSteps(){
                 exit /b 0
                 """
               }
+
               stage('run & update') {
                 echo 'running....'
                   bat """
                   taskkill /f /im BravoHotel*
                   taskkill /f /im AutoHotKey*
                   net use \\\\oscarmike.io\\BravoHotel_Distribution ",q4W!q" /user:wonderpeople
+                  set RUN_OPTIONS=-ApiPhase="dev2_for_dev_stream" -MatchMakingTag="GM_BattleRoyale_DEV" -GameMode="GM_BattleRoyale_DEV" -IgnoreCatalogue -dx12 ServicePlatform="internal" -SelectExec="BravoHotelGame\\Binaries\\Win64\\BravoHotelClient.exe" -AutoJoinCmd=172.16.2.201:${port}?UserName=${name} -PatchEndThenRequestExit -MonitoringEndThenRequestExit -performancemonitoring -nobenchmark
                   pushd \\Games\\RunGame_Dev && RunGame_Dev_Tqa.bat ${name}
                   exit /b 0
                   """
