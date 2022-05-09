@@ -51,8 +51,6 @@ def doDynamicParallelSteps(){
 
                 def isRunChangeSettings_GraphicOption = false
 
-                def addtionalOpts = 'GraphicOptionTestLoop=100 GraphicOptionTestInterval=5.0 -ExecCmds="Automation RunTests AutoUnitTests.ChangeSettings.GraphicOption"'
-
                 if( name = "HIGHTEST1" || name = "MIDDLETEST1" || name = "LOWTEST1" ) {
                   isRunChangeSettings_GraphicOption = true 
                 }
