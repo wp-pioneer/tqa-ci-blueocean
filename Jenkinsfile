@@ -60,7 +60,7 @@ def doDynamicParallelSteps(){
                   set PORT=${port}
 
                   echo "DEV_DEV"
-                  set RUN_OPTIONS=-ApiPhase="dev2_for_dev_stream" -MatchMakingTag="GM_BattleRoyale_DEV" -GameMode="GM_BattleRoyale_DEV" -IgnoreCatalogue -dx12 ServicePlatform="internal" -SelectExec="BravoHotelGame\\Binaries\\Win64\\BravoHotelClient.exe" -AutoJoinCmd=172.16.2.201:${port}?UserName=${name} -MonitoringEndThenRequestExit -performancemonitoring -nobenchmark
+                  set RUN_OPTIONS=-SkipPatch -ApiPhase="dev2_for_dev_stream" -MatchMakingTag="GM_BattleRoyale_DEV" -GameMode="GM_BattleRoyale_DEV" -IgnoreCatalogue -dx12 ServicePlatform="internal" -SelectExec="BravoHotelGame\\Binaries\\Win64\\BravoHotelClient.exe" -AutoJoinCmd=172.16.2.201:${port}?UserName=${name} -MonitoringEndThenRequestExit -performancemonitoring -nobenchmark
                   
 
                   pushd \\Auto && start AutoHotkey.exe check_crash.ahk ${name}
