@@ -52,7 +52,20 @@ def doDynamicParallelSteps(){
               }
               stage('run') {
                 def port = 8800 + ( currentBuild.number % 2)
-               
+
+                def isRunChangeSettings_GraphicOption = false
+
+                if( name = "HIGHTEST1" || name = "MIDDLETEST1" || name = "LOWTEST1" ) {
+                  isRunChangeSettings_GraphicOption = true 
+                }
+
+                def options = '-SkipPatch -ApiPhase="dev2_for_dev_stream" -MatchMakingTag="GM_BattleRoyale_DEV" -GameMode="GM_BattleRoyale_DEV" -IgnoreCatalogue -dx12 ServicePlatform="internal" -SelectExec="BravoHotelGame\\Binaries\\Win64\\BravoHotelClient.exe" -AutoJoinCmd=172.16.2.201:${port}?UserName=${name} -MonitoringEndThenRequestExit -performancemonitoring -nobenchmark'
+
+
+                if( isRunChangeSettings_GraphicOption ) {
+                  options += ' GraphicOptionTestLoop=100 GraphicOptionTestInterval=5.0 -ExecCmds="Automation RunTests AutoUnitTests.ChangeSettings.GraphicOption"'
+                }
+
                 echo "running.... ${port}"
 
                   bat """
@@ -63,9 +76,7 @@ def doDynamicParallelSteps(){
                   set USERNAME=${name}
                   set PORT=${port}
 
-                  echo "DEV_DEV"
-                  set RUN_OPTIONS=-SkipPatch -ApiPhase="dev2_for_dev_stream" -MatchMakingTag="GM_BattleRoyale_DEV" -GameMode="GM_BattleRoyale_DEV" -IgnoreCatalogue -dx12 ServicePlatform="internal" -SelectExec="BravoHotelGame\\Binaries\\Win64\\BravoHotelClient.exe" -AutoJoinCmd=172.16.2.201:${port}?UserName=${name} -MonitoringEndThenRequestExit -performancemonitoring -nobenchmark
-                  
+                  set RUN_OPTIONS=${options}
 
                   pushd \\Auto && start AutoHotkey.exe check_crash.ahk ${name}
                   pushd \\Games\\RunGame_Dev && RunGame_Dev_Tqa.bat 
