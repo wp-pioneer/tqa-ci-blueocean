@@ -137,7 +137,7 @@ pipeline {
     preserveStashes(buildCount: 10)
   }
   triggers {
-    cron('TZ=Asia/Seoul\n0 17-23 * * *')
+    cron('TZ=Asia/Seoul\n30 17-23 * * *')
   }
   post {
     success {
