@@ -80,7 +80,7 @@ def doDynamicParallelSteps(){
                   set RUN_OPTIONS=${options}
 
                   pushd \\Auto && start AutoHotkey.exe check_crash.ahk ${name}
-                  pushd \\Games\\RunGame_Dev && RunGame_Dev_Tqa.bat 
+                  pushd \\Games\\RunGame_Main && RunGame_Main_Tqa.bat 
                   exit /b 0
                   """
               }
