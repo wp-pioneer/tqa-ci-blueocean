@@ -60,11 +60,11 @@ def doDynamicParallelSteps(){
                 }
 
                 def options = '-ApiPhase="dev2" -nosteam -ExecCmds="log.Timestamp 3" -dx12 %SecurityOptions% ServicePlatform="internal"'
-                options += " -AutoJoinCmd=172.16.2.11:${port}?UserName=${name} 1 > nul" 
+                options += " -nobenchmark -AutoJoinCmd=172.16.2.11:${port}?UserName=${name} 1 > nul" 
 
 
                 if( isRunChangeSettings_GraphicOption ) {
-                  options += ' -nobenchmark GraphicOptionTestLoop=100 GraphicOptionTestInterval=5.0 -ExecCmds="Automation RunTests AutoUnitTests.ChangeSettings.GraphicOption"'
+                  options += ' GraphicOptionTestLoop=100 GraphicOptionTestInterval=5.0 -ExecCmds="Automation RunTests AutoUnitTests.ChangeSettings.GraphicOption"'
                 }
 
                 echo "running.... ${port}"
