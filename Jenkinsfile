@@ -64,7 +64,7 @@ def doDynamicParallelSteps(){
 
 
                 if( isRunChangeSettings_GraphicOption ) {
-                  options += ' GraphicOptionTestLoop=100 GraphicOptionTestInterval=5.0 -ExecCmds="Automation RunTests AutoUnitTests.ChangeSettings.GraphicOption"'
+                  options += ' -nobenchmark GraphicOptionTestLoop=100 GraphicOptionTestInterval=5.0 -ExecCmds="Automation RunTests AutoUnitTests.ChangeSettings.GraphicOption"'
                 }
 
                 echo "running.... ${port}"
