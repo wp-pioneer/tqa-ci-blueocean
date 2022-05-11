@@ -26,7 +26,7 @@ def doDynamicParallelSteps(){
               stage('copy') {
                 echo 'running....'
                   bat """
-                  copy C:\\Games\\RunGame_Main\\BravoHotelGameApp\\MinApp\\WindowsClient\\BravoHotelGame\\Saved\\BravoHotelGame_PCD3D_SM5.upipelinecache "\\\\oscarmike.io\\Shared\\PSO\\${name}.upipelineCache" /y
+                  dir C:\\Games\\RunGame_Main\\BravoHotelGameApp\\MinApp\\WindowsClient\\BravoHotelGame\\Saved\\BravoHotelGame_PCD3D_SM5.upipelinecache "\\\\oscarmike.io\\Shared\\PSO\\${name}.upipelineCache" /y
                   exit /b 0
                   """
               }
