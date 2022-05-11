@@ -59,7 +59,7 @@ def doDynamicParallelSteps(){
                   isRunChangeSettings_GraphicOption = true 
                 }
 
-                def options = '-ApiPhase="dev2" -nosteam -ExecCmds="log.Timestamp 3" -dx12 %SecurityOptions% ServicePlatform="internal"'
+                def options = '-ApiPhase="dev2" -nosteam -ExecCmds="log.Timestamp 3" -dx12 %SecurityOptions% ServicePlatform="internal" -MonitoringEndThenRequestExit -performancemonitoring -nobenchmark'
                 options += " -nobenchmark -AutoJoinCmd=172.16.2.11:${port}?UserName=${name} 1 > nul" 
 
 
