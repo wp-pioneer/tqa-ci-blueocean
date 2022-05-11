@@ -51,7 +51,7 @@ def doDynamicParallelSteps(){
                 """
               }
               stage('run') {
-                def port = 8800 + ( currentBuild.number % 2)
+                def port = 8800 + ( currentBuild.number % 4)
 
                 def isRunChangeSettings_GraphicOption = false
 
