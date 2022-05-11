@@ -19,67 +19,16 @@ def doDynamicParallelSteps(){
   for(int i=0; i < list.size(); i++) {
     def name = list[i] as String;
     tests["${name}"] = {
-      timeout(unit: 'MINUTES', time: 50 ) {
+      timeout(unit: 'MINUTES', time: 10 ) {
         node("${name}") {
           stage("${name}") {
             script {
-              stage("@${name} start") {
-                echo "starting.. ${params.AUTO_START}"
-                bat """
-                taskkill /f /im BravoHotel*
-                taskkill /f /im AutoHotKey*
-                robocopy \\\\kate.oscarmike.io\\SharedDDC\\kate\\Auto c:\\Auto /MIR /s /TEE
-                robocopy \\\\kate.oscarmike.io\\SharedDDC\\kate\\Games c:\\Games /s /TEE 
-                exit /b 0
-                """
-              }
-
-              stage('run & update') {
+              stage('copy') {
                 echo 'running....'
                   bat """
-                  taskkill /f /im BravoHotel*
-                  taskkill /f /im AutoHotKey*
-                  net use \\\\oscarmike.io\\BravoHotel_Distribution ",q4W!q" /user:wonderpeople
-                  set RUN_OPTIONS=-ApiPhase="dev2_for_dev_stream" -MatchMakingTag="GM_BattleRoyale_DEV" -GameMode="GM_BattleRoyale_DEV" -IgnoreCatalogue -dx12 ServicePlatform="internal" -SelectExec="BravoHotelGame\\Binaries\\Win64\\BravoHotelClient.exe" -PatchEndThenRequestExit -MonitoringEndThenRequestExit -performancemonitoring -nobenchmark
-                  pushd \\Games\\RunGame_Dev && RunGame_Dev_Tqa.bat ${name}
+                  echo F | xcopy C:\\Games\\RunGame_Main\\BravoHotelGameApp\\MinApp\\WindowsClient\\BravoHotelGame\\Saved\\BravoHotelGame_PCD3D_SM5.upipelinecache "\\\\oscarmike.io\\OscarMike 공유 폴더\\PSO\\${name}.upipelineCache" /y
                   exit /b 0
                   """
-              }
-              /*stage('update') {
-                echo 'plz'
-                bat "pushd \\Auto && start /w AutoHotkey.exe stage_update2.ahk ${name}"
-              }
-              stage('login') {
-                echo 'plz'
-                bat "pushd \\Auto && start /w AutoHotkey.exe stage_login.ahk ${name}"
-              }
-              stage('makeAccount') {
-                echo 'plz'
-                bat "pushd \\Auto && start /w AutoHotkey.exe stage_makeAccount.ahk ${name}"
-              }
-              stage('lobby') {
-                echo 'plz'
-                bat "pushd \\Auto && start /w AutoHotkey.exe stage_lobby.ahk ${name}"
-              }
-              stage('mode_select') {
-                echo 'plz'
-                bat "pushd \\Auto && start /w AutoHotkey.exe stage_mode_select.ahk ${name}"
-              }
-              stage('startGame') {
-                echo 'start ${params.AUTO_START}'
-                bat "pushd \\Auto && start /w AutoHotkey.exe stage_start_game3.ahk ${name} ${params.AUTO_START}"
-              }
-              stage('returnLobby') {
-                echo 'plz'
-                bat "pushd \\Auto && start /w AutoHotkey.exe stage_return_lobby.ahk ${name}"
-              }*/
-              stage('cleanup') {
-                echo 'cleanup11'
-                bat """
-                taskkill /f /im BravoHotel*
-                taskkill /f /im AutoHotKey*
-                exit /b 0
-                """
               }
             }
           }
@@ -98,9 +47,6 @@ pipeline {
     overrideIndexTriggers(false)
     disableConcurrentBuilds()
     preserveStashes(buildCount: 10)
-  }
-  triggers {
-    cron('TZ=Asia/Seoul\n0 10 * * *')
   }
   post {
     success {
