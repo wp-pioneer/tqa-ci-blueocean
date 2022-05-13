@@ -34,7 +34,7 @@ def doDynamicParallelSteps(){
                 """
               }
 
-              stage('run & update') {
+              stage('run') {
                 echo 'running....'
                   bat """
                   taskkill /f /im BravoHotel*
@@ -45,11 +45,11 @@ def doDynamicParallelSteps(){
                   exit /b 0
                   """
               }
-              /*stage('update') {
+              stage('update') {
                 echo 'plz'
                 bat "pushd \\Auto && start /w AutoHotkey.exe stage_update2.ahk ${name}"
               }
-              stage('login') {
+              /*stage('login') {
                 echo 'plz'
                 bat "pushd \\Auto && start /w AutoHotkey.exe stage_login.ahk ${name}"
               }
