@@ -55,7 +55,7 @@ def doDynamicParallelSteps(){
 
                 def isRunChangeSettings_GraphicOption = false
 
-                if(  ["HIGHTEST1","MIDDLETEST1","LOWTEST1"].contains("HIGHTEST1") ) { 
+                if(  ["HIGHTEST1","MIDDLETEST1","LOWTEST1"].contains(name) ) { 
                   isRunChangeSettings_GraphicOption = true 
                 }
 
