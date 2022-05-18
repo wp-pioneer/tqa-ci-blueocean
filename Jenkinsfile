@@ -55,7 +55,7 @@ def doDynamicParallelSteps(){
 
                 def isRunChangeSettings_GraphicOption = false
 
-                if(  ["HIGHTEST1","MIDDLETEST1","LOWTEST1"].contains("HIGHTEST1") ) { 
+                if(  ["HIGHTEST1","MIDDLETEST1","LOWTEST1"].contains(name) ) { 
                   isRunChangeSettings_GraphicOption = true 
                 }
                 def options = '-ApiPhase="dev2" -nosteam -ExecCmds="net.IpNetDriverReceiveThreadQueueMaxPackets 102400" -LogCmds="LogReplicationPingComponent All" -WithPingComponent -dx12 %SecurityOptions% ServicePlatform="internal"'
