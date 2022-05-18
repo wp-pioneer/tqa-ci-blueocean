@@ -49,6 +49,9 @@ pipeline {
     disableConcurrentBuilds()
     preserveStashes(buildCount: 10)
   }
+  triggers {
+    cron('TZ=Asia/Seoul\n0 10 * * *')
+  }
   post {
     success {
         slackSend (channel: '#tqa-ci', color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
