@@ -51,7 +51,7 @@ def doDynamicParallelSteps(){
                 """
               }
               stage('run') {
-                def port = 8800 + ( currentBuild.number % 4)
+                def port = 8800 + ( currentBuild.number % 2 ) 
 
                 def isRunChangeSettings_GraphicOption = false
 
@@ -95,7 +95,7 @@ def doDynamicParallelSteps(){
               
               stage("start - ${inGameCount}") {
                 def percent = ((inGameCount / totalCount ) * 100)
-                if( isStarted == 0 && percent > 85 ) {
+                if( isStarted == 0 && percent > 80 ) {
                   isStarted = 1
                   echo 'try start..'
                   sleep(180)
