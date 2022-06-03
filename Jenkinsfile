@@ -27,7 +27,7 @@ def doDynamicParallelSteps(){
                 echo 'running....'
                   bat """
                   net use \\\\oscarmike.io\\BravoHotel_Distribution ",q4W!q" /user:wonderpeople
-                  copy \\Games\\RunGame_Main\\BravoHotelGameApp\\MinApp\\WindowsClient\\BravoHotelGame\\Saved\\BravoHotelGame_PCD3D_SM5.upipelinecache \\\\oscarmike.io\\Shared\\PSO\\${name}.upipelineCache /y
+                  copy D:\\Games\\RunGame_Main\\BravoHotelGameApp\\MinApp\\WindowsClient\\BravoHotelGame\\Saved\\BravoHotelGame_PCD3D_SM5.upipelinecache \\\\oscarmike.io\\Shared\\PSO\\${name}.upipelineCache /y
                   exit /b 0
                   """
               }
