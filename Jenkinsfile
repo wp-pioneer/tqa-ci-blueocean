@@ -29,7 +29,7 @@ def doDynamicParallelSteps(){
                 taskkill /f /im BravoHotel*
                 taskkill /f /im AutoHotKey*
                 robocopy \\\\kate.oscarmike.io\\SharedDDC\\kate\\Auto c:\\Auto /MIR /s /TEE
-                robocopy \\\\kate.oscarmike.io\\SharedDDC\\kate\\Games c:\\Games /s /TEE 
+                robocopy \\\\kate.oscarmike.io\\SharedDDC\\kate\\Games D:\\Games /s /TEE 
                 exit /b 0
                 """
               }
@@ -38,7 +38,7 @@ def doDynamicParallelSteps(){
                   bat """
                   taskkill /f /im BravoHotel*
                   taskkill /f /im AutoHotKey*
-                  pushd \\Games\\RunGame_QA && RunGame_QA_Tqa.bat ${name}
+                  pushd D:\\Games\\RunGame_QA && RunGame_QA_Tqa.bat ${name}
                   pushd \\Auto && start AutoHotkey.exe check_crash.ahk ${name}
                   exit /b 0
                   """
