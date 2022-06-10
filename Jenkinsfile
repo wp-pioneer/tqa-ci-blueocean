@@ -27,6 +27,11 @@ def doDynamicParallelSteps(){
   tests = [:]
   for(int i=0; i < list.size(); i++) {
     def name = list[i] as String;
+    def drive = "D"
+    if( name.contains("HIGH") ) {
+      drive = "C"
+    }
+
     tests["${name}"] = {
       timeout(unit: 'MINUTES', time: 50 ) {
         node("${name}") {
@@ -46,7 +51,7 @@ def doDynamicParallelSteps(){
                 taskkill /f /im AutoHotKey*
                 net use
                 robocopy \\\\kate.oscarmike.io\\SharedDDC\\kate\\Auto c:\\Auto /MIR /s /TEE
-                robocopy \\\\kate.oscarmike.io\\SharedDDC\\kate\\Games D:\\Games /s /TEE 
+                robocopy \\\\kate.oscarmike.io\\SharedDDC\\kate\\Games ${drive}:\\Games /s /TEE 
                 exit /b 0
                 """
               }
@@ -80,7 +85,7 @@ def doDynamicParallelSteps(){
                   set RUN_OPTIONS=${options}
 
                   pushd \\Auto && start AutoHotkey.exe check_crash.ahk ${name}
-                  pushd D:\\Games\\RunGame_Dev && RunGame_Dev_Tqa.bat 
+                  pushd ${drive}:\\Games\\RunGame_Dev && RunGame_Dev_Tqa.bat 
                   exit /b 0
                   """
               }
