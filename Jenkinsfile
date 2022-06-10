@@ -18,6 +18,10 @@ def doDynamicParallelSteps(){
   tests = [:]
   for(int i=0; i < list.size(); i++) {
     def name = list[i] as String;
+    def drive = "D";
+    if( name.contains("HIGH") ) {
+      drive = "C";
+    }
     tests["${name}"] = {
       timeout(unit: 'MINUTES', time: 10 ) {
         node("${name}") {
@@ -27,7 +31,7 @@ def doDynamicParallelSteps(){
                 echo 'running....'
                   bat """
                   net use \\\\oscarmike.io\\BravoHotel_Distribution ",q4W!q" /user:wonderpeople
-                  copy D:\\Games\\RunGame_Main\\BravoHotelGameApp\\MinApp\\WindowsClient\\BravoHotelGame\\Saved\\BravoHotelGame_PCD3D_SM5.upipelinecache \\\\oscarmike.io\\Shared\\PSO\\${name}.upipelineCache /y
+                  copy ${drive}:\\Games\\RunGame_Main\\BravoHotelGameApp\\MinApp\\WindowsClient\\BravoHotelGame\\Saved\\BravoHotelGame_PCD3D_SM5.upipelinecache \\\\oscarmike.io\\Shared\\PSO\\${name}.upipelineCache /y
                   exit /b 0
                   """
               }
