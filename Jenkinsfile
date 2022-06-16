@@ -33,7 +33,7 @@ def doDynamicParallelSteps(){
                 taskkill /f /im AutoHotKey*
                 setlocal EnableDelayedExpansion
                 robocopy \\\\kate.oscarmike.io\\SharedDDC\\kate\\Auto c:\\Auto /MIR /s /TEE
-                robocopy \\\\kate.oscarmike.io\\SharedDDC\\kate\\Games D:\\Games /s /TEE 
+                robocopy \\\\kate.oscarmike.io\\SharedDDC\\kate\\Games C:\\Games /s /TEE 
                 exit /b 0
                 """
               }
@@ -44,7 +44,7 @@ def doDynamicParallelSteps(){
                 taskkill /f /im BravoHotel*
                 taskkill /f /im AutoHotKey*
                 pushd \\Auto && start AutoHotkey.exe check_crash.ahk ${name}
-                pushd D:\\Games\\RunGame_QA && RunGame_QA_Test_assetmonitoring.bat
+                pushd C:\\Games\\RunGame_QA && RunGame_QA_Test_assetmonitoring.bat
                 exit /b 0
                 """
               }
