@@ -8,6 +8,7 @@ def onlineNodeNames() {
              free_nodes += node.name 
          }
      }
+     free_nodes.remove("INTEL")
     return free_nodes
 }
 
