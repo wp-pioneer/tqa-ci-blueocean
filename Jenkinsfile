@@ -14,6 +14,7 @@ def onlineNodeNames() {
            }
          }
      }
+     free_nodes.remove("INTEL")
     return free_nodes
 }
 
