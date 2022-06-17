@@ -3,18 +3,18 @@
 //@NonCPS
 def onlineNodeNames() {
     String[] free_nodes = []
-     for (Node node in jenkins.model.Jenkins.instance.nodes) {
+      for (Node node in jenkins.model.Jenkins.instance.nodes) {
          // Make sure slave is online
           if (node != null && node.toComputer() != null && node.toComputer().online) {
-           def computer = node.toComputer() 
-           
-           if( computer.countBusy() <= 0 ) {
-             free_nodes += node.name
-             println "${computer.countBusy()}, ${computer.countIdle()}, ${computer.countExecutors()}";
-           }
+            def computer = node.toComputer()
+
+            if( computer.countBusy() <= 0 ) {
+              free_nodes += node.name
+              println "${computer.countBusy()}, ${computer.countIdle()}, ${computer.countExecutors()}";
+            }
          }
-     }
-     free_nodes.remove("INTEL")
+      }
+      free_nodes = free_nodes.findAll { it != 'INTEL' }
     return free_nodes
 }
 
