@@ -72,6 +72,10 @@ def doDynamicParallelSteps(){
                   options += ' GraphicOptionTestLoop=100 GraphicOptionTestInterval=5.0 -ExecCmds="Automation RunTests AutoUnitTests.ChangeSettings.GraphicOption"'
                 }
 
+                if( name.contains("INTEL") ) { 
+                  options += ' -ExecCmds="Automation RunTests BravoHotel.Scenario.QAPerformance_Default"'
+                }
+
                 echo "running.... ${port}"
 
                   bat """
