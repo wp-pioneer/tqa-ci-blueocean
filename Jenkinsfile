@@ -28,7 +28,7 @@ def doDynamicParallelSteps(){
   for(int i=0; i < list.size(); i++) {
     def name = list[i] as String;
     def drive = "D";
-    if( name.contains("HIGH") ) {
+    if( name.contains("HIGH") || name.contains("INTEL")) {
       drive = "C";
     }
 
