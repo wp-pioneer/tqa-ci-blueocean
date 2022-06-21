@@ -68,7 +68,7 @@ def doDynamicParallelSteps(){
                 }
 
                 if( name.contains("INTEL") ) { 
-                  options += ' -ExecCmds="Automation RunTests BravoHotel.Scenario.QAPerformance_Default"
+                  options += ' -ExecCmds="Automation RunTests BravoHotel.Scenario.QAPerformance_Default'
                 }
 
 
