@@ -8,7 +8,7 @@ def onlineNodeNames() {
              free_nodes += node.name 
          }
      }
-     free_nodes = free_nodes.findAll { it != 'INTEL' }
+     //free_nodes = free_nodes.findAll { it != 'INTEL' }
     return free_nodes
 }
 
