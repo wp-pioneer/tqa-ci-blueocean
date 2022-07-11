@@ -105,7 +105,7 @@ def doDynamicParallelSteps(){
                 p4 sync -f C:\\Workspaces\\jenkins_dll_PSO_Main\\ZBravoHotel\\Build\\Windows\\PipelineCaches\\BravoHotelGame_PCD3D_SM5.stable.upipelinecache 
                 p4 edit C:\\Workspaces\\jenkins_dll_PSO_Main\\ZBravoHotel\\Build\\Windows\\PipelineCaches\\BravoHotelGame_PCD3D_SM5.stable.upipelinecache 
                 copy C:\\Games\\RunGame_Main\\BravoHotelGameApp\\MinApp\\WindowsClient\\BravoHotelGame\\Saved\\BravoHotelGame_PCD3D_SM5.upipelinecache C:\\Workspaces\\jenkins_dll_PSO_Main\\ZBravoHotel\\Build\\Windows\\PipelineCaches\\BravoHotelGame_PCD3D_SM5.stable.upipelinecache /y
-                p4 submit -d "PSO 캐시 업로드" 
+                p4 submit -d "PSO CACHE UPLOAD" 
                 """
               }
 
