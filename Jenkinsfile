@@ -85,6 +85,7 @@ def doDynamicParallelSteps(){
                 :LOOP
                 tasklist | find /i "BravoHotel" >nul 2>&1
                 IF ERRORLEVEL 1 (
+                  exit /b 0
                 ) ELSE (
                   ECHO still running
                   GOTO LOOP
