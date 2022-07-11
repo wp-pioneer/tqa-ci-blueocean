@@ -80,25 +80,23 @@ def doDynamicParallelSteps(){
               }
 
               stage('wait client') {
+                sleep 10
                 bat """
                 :LOOP
                 tasklist | find /i "BravoHotel" >nul 2>&1
                 IF ERRORLEVEL 1 (
-                  GOTO CONTINUE
                 ) ELSE (
                   ECHO still running
                   GOTO LOOP
                 )
-                :CONTINUE
+                exit /b 0
                 """
               }
 
-              stage('copy to p4') {
-
-              }
-
-              stage('p4 commit') {
-
+              stage('update cache') {
+                bat """
+                  copy C:\\PSOCaching C:\\Games\\RunGame_Main\\BravoHotelGameApp\\MinApp\\WindowsClient\\BravoHotelGame\\Saved\\BravoHotelGame_PCD3D_SM5.upipelinecache C:\\Workspaces\\jenkins_dll_PSO_Main\\ZBravoHotel\\Build\\Windows\\PipelineCaches\\BravoHotelGame_PCD3D_SM5.stable.upipelinecache /y
+                """
               }
 
             }
