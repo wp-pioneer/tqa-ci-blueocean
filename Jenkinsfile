@@ -3,6 +3,10 @@
 def onlineNodeNames() {
     String[] free_nodes = []
      for (Node node in jenkins.model.Jenkins.instance.nodes) {
+         // skip PSO machine 
+         if( node.name.contains("PSO") ) {
+           continue
+         }
          // Make sure slave is online
          if (node != null && node.toComputer() != null && node.toComputer().online) {
              free_nodes += node.name 
