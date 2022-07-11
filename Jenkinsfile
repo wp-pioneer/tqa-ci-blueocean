@@ -79,6 +79,21 @@ def doDynamicParallelSteps(){
                 """
               }
 
+              stage('wait client') {
+                bat """
+                :LOOP
+                tasklist | find /i "BravoHotel" >nul 2>&1
+                IF ERRORLEVEL 1 (
+                  GOTO CONTINUE
+                ) ELSE (
+                  ECHO Wordpad is still running
+                  Timeout /T 5 /Nobreak
+                  GOTO LOOP
+                )
+                :CONTINUE
+                """
+              }
+
             }
           }
         }
