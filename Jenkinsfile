@@ -21,18 +21,58 @@ def doDynamicParallelSteps(){
     def name = list[i] as String;
     drive = "C";
     tests["${name}"] = {
-      timeout(unit: 'MINUTES', time: 10 ) {
+      timeout(unit: 'MINUTES', time: 30 ) {
         node("${name}") {
           stage("${name}") {
             script {
-              stage('copy') {
-                echo 'running....'
-                  bat """
-                  net use \\\\oscarmike.io\\BravoHotel_Distribution ",q4W!q" /user:wonderpeople
+              stage('prepare') {
+                bat """
+                taskkill /f /im BravoHotel*
+                taskkill /f /im AutoHotKey*
+                net use \\\\oscarmike.io\\BravoHotel_Distribution ",q4W!q" /user:wonderpeople
 
-                  exit /b 0
-                  """
+                exit /b 0
+                """
               }
+              stage('copy pso') {
+                bat """
+                c:
+                pushd \\Workspaces\\jenkins_dll_PSO_Main\\ZBravoHotel
+                SyncLastestEditor.bat
+                pushd \\
+                robocopy \\\\oscarmike.io\\Shared\\PSO \\PSOCaching /MIR /s /TEE
+
+                exit /b 0
+                """
+              }
+              stage('merge cache') {
+                bat """
+                echo "copy prev pso cache"
+                copy c:\\Workspaces\\jenkins_dll_PSO_Main\\ZBravoHotel\\Build\\Windows\\PipelineCaches\\BravoHotelGame_PCD3D_SM5.stable.upipelinecache \\PSOCaching /y
+
+                echo "delete prev merged cache"
+                del c:\\PSOCaching\\BravoHotelGame_PCD3D_SM5.upipelinecache
+
+                echo "merge pso cache"
+                pushd \\Workspaces\\jenkins_dll_PSO_Main\\ZBravoHotel
+                ..\\Engine\\Binaries\\Win64\\UE4Editor-Cmd.exe BravoHotelGame -run=ShaderPipelineCacheTools Merge C:\\PSOCaching\\*.upipelineCache C:\\PSOCaching\\BravoHotelGame_PCD3D_SM5.upipelinecache
+
+                echo "robocopy"
+                robocopy C:\\PSOCaching C:\\Games\\RunGame_Main\\BravoHotelGameApp\\MinApp\WindowsClient\\BravoHotelGame\\Saved BravoHotelGame_PCD3D_SM5.upipelinecache /MOV
+
+                exit /b 0
+                """
+              }
+
+              stage('run client with merge command'){
+                bat """
+                set RUN_OPTIONS=-nostablepipelinecache -ExecCmds="Automation RunTests BravoHotel.RenderCore.SaveShaderPipelineCache"
+                pushd C:\\Games\\RunGame_Main && RunGame_Main_Tqa.bat
+                exit /b 0
+
+                """
+              }
+
             }
           }
         }
