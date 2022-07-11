@@ -101,7 +101,7 @@ def doDynamicParallelSteps(){
                     delete: true, 
                     modtime: false, 
                     pin: '',
-                    quiet: true,
+                    quiet: false,
                     replace: true],
                   stream: '//BravoHotel/main')
                 bat """
