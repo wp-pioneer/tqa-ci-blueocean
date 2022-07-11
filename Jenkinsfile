@@ -95,16 +95,12 @@ def doDynamicParallelSteps(){
               }
 
               stage('update cache') {
-                p4sync(charset: 'utf-8',
-                  credential: 'jenkins_dll', 
-                  populate: [$class: 'AutoCleanImpl', 
-                    delete: true, 
-                    modtime: false, 
-                    pin: '',
-                    quiet: false,
-                    replace: true],
-                  stream: '//BravoHotel/main')
                 bat """
+                p4 set P4USER=jenkins_dll
+                p4 set P4PORT=p4.oscarmike.io
+                p4 set P4PASSWD=%P4_JENKINS_PW%
+                p4 set P4CHARSET=utf8
+                p4 set P4CLIENT=jenkins_dll_PSO_Main
                 p4 info
                 copy C:\\Games\\RunGame_Main\\BravoHotelGameApp\\MinApp\\WindowsClient\\BravoHotelGame\\Saved\\BravoHotelGame_PCD3D_SM5.upipelinecache C:\\Workspaces\\jenkins_dll_PSO_Main\\ZBravoHotel\\Build\\Windows\\PipelineCaches\\BravoHotelGame_PCD3D_SM5.stable.upipelinecache /y
                 """
