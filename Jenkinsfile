@@ -97,7 +97,7 @@ def doDynamicParallelSteps(){
               stage('update cache') {
                 bat """
                 p4 set P4USER=jenkins_dll
-                p4 set P4PORT=p4.oscarmike.io
+                p4 set P4PORT=p4.oscarmike.io:1666
                 p4 set P4PASSWD=%P4_JENKINS_PW%
                 p4 set P4CHARSET=utf8
                 p4 set P4CLIENT=jenkins_dll_PSO_Main
