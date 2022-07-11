@@ -37,11 +37,17 @@ def doDynamicParallelSteps(){
               stage('copy pso') {
                 bat """
                 c:
-                pushd \\Workspaces\\jenkins_dll_PSO_Main\\ZBravoHotel
-                SyncLatestEditor.bat
                 pushd \\
                 robocopy \\\\oscarmike.io\\Shared\\PSO \\PSOCaching /MIR /s /TEE
 
+                exit /b 0
+                """
+              }
+              stage('sync editor') {
+                bat """
+                c:
+                pushd \\Workspaces\\jenkins_dll_PSO_Main\\ZBravoHotel
+                SyncLatestEditor.bat
                 exit /b 0
                 """
               }
