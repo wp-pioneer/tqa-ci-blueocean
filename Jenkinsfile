@@ -58,7 +58,7 @@ def doDynamicParallelSteps(){
                 ..\\Engine\\Binaries\\Win64\\UE4Editor-Cmd.exe BravoHotelGame -run=ShaderPipelineCacheTools Merge C:\\PSOCaching\\*.upipelineCache C:\\PSOCaching\\BravoHotelGame_PCD3D_SM5.upipelinecache
 
                 echo "robocopy"
-                robocopy C:\\PSOCaching C:\\Games\\RunGame_Main\\BravoHotelGameApp\\MinApp\WindowsClient\\BravoHotelGame\\Saved BravoHotelGame_PCD3D_SM5.upipelinecache /MOV
+                robocopy C:\\PSOCaching C:\\Games\\RunGame_Main\\BravoHotelGameApp\\MinApp\\WindowsClient\\BravoHotelGame\\Saved BravoHotelGame_PCD3D_SM5.upipelinecache /MOV
 
                 exit /b 0
                 """
