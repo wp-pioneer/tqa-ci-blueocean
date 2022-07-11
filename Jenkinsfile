@@ -86,12 +86,19 @@ def doDynamicParallelSteps(){
                 IF ERRORLEVEL 1 (
                   GOTO CONTINUE
                 ) ELSE (
-                  ECHO Wordpad is still running
-                  Timeout /T 5 /Nobreak
+                  ECHO still running
                   GOTO LOOP
                 )
                 :CONTINUE
                 """
+              }
+
+              stage('copy to p4') {
+
+              }
+
+              stage('p4 commit') {
+
               }
 
             }
