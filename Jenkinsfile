@@ -16,6 +16,7 @@ def doDynamicParallelSteps(){
 
   def list = onlineNodeNames();
 
+  def stream = "Main"
   def WS = "jenkins_dll_PSO_Main"
   def drive = "C"
 
@@ -40,7 +41,7 @@ def doDynamicParallelSteps(){
                 bat """
                 ${drive}:
                 pushd \\
-                robocopy \\\\oscarmike.io\\Shared\\PSO \\PSOCaching /MIR /s /TEE
+                robocopy \\\\oscarmike.io\\Shared\\PSO\\${stream} \\PSOCaching /MIR /s /TEE
 
                 exit /b 0
                 """
@@ -66,7 +67,7 @@ def doDynamicParallelSteps(){
                 ..\\Engine\\Binaries\\Win64\\UE4Editor-Cmd.exe BravoHotelGame -run=ShaderPipelineCacheTools Merge ${drive}:\\PSOCaching\\*.upipelineCache ${drive}:\\PSOCaching\\BravoHotelGame_PCD3D_SM5.upipelinecache
 
                 echo "robocopy"
-                robocopy ${drive}:\\PSOCaching ${drive}:\\Games\\RunGame_Main\\BravoHotelGameApp\\MinApp\\WindowsClient\\BravoHotelGame\\Saved BravoHotelGame_PCD3D_SM5.upipelinecache /MOV
+                robocopy ${drive}:\\PSOCaching ${drive}:\\Games\\RunGame_${stream}\\BravoHotelGameApp\\MinApp\\WindowsClient\\BravoHotelGame\\Saved BravoHotelGame_PCD3D_SM5.upipelinecache /MOV
 
                 exit /b 0
                 """
@@ -75,7 +76,7 @@ def doDynamicParallelSteps(){
               stage('run client with merge command'){
                 bat """
                 set RUN_OPTIONS=-nostablepipelinecache -ExecCmds="Automation RunTests BravoHotel.RenderCore.SaveShaderPipelineCache"
-                pushd ${drive}:\\Games\\RunGame_Main && RunGame_Main_Tqa.bat
+                pushd ${drive}:\\Games\\RunGame_${stream} && RunGame_${stream}_Tqa.bat
                 exit /b 0
 
                 """
@@ -106,7 +107,7 @@ def doDynamicParallelSteps(){
                 p4 info
                 p4 sync -f ${drive}:\\Workspaces\\${WS}\\ZBravoHotel\\Build\\Windows\\PipelineCaches\\BravoHotelGame_PCD3D_SM5.stable.upipelinecache 
                 p4 edit ${drive}:\\Workspaces\\${WS}\\ZBravoHotel\\Build\\Windows\\PipelineCaches\\BravoHotelGame_PCD3D_SM5.stable.upipelinecache 
-                copy ${drive}:\\Games\\RunGame_Main\\BravoHotelGameApp\\MinApp\\WindowsClient\\BravoHotelGame\\Saved\\BravoHotelGame_PCD3D_SM5.upipelinecache ${drive}:\\Workspaces\\${WS}\\ZBravoHotel\\Build\\Windows\\PipelineCaches\\BravoHotelGame_PCD3D_SM5.stable.upipelinecache /y
+                copy ${drive}:\\Games\\RunGame_${stream}\\BravoHotelGameApp\\MinApp\\WindowsClient\\BravoHotelGame\\Saved\\BravoHotelGame_PCD3D_SM5.upipelinecache ${drive}:\\Workspaces\\${WS}\\ZBravoHotel\\Build\\Windows\\PipelineCaches\\BravoHotelGame_PCD3D_SM5.stable.upipelinecache /y
                 p4 submit -d "PSO CACHE UPLOAD" 
                 """
               }
