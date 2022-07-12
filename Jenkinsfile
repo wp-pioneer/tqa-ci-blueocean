@@ -45,21 +45,21 @@ def doDynamicParallelSteps(){
                 """
               }
               stage('실행') {
-                options += ' -ExecCmds="Automation RunTests BravoHotel.Utils.PSOCollectingTest"'
+                
+                options = ' -ExecCmds="Automation RunTests BravoHotel.Utils.PSOCollectingTest"'
+                
+                bat """
+                taskkill /f /im BravoHotel*
+                taskkill /f /im AutoHotKey*
 
+                net use \\\\oscarmike.io\\BravoHotel_Distribution ",q4W!q" /user:wonderpeople
 
-                  bat """
-                  taskkill /f /im BravoHotel*
-                  taskkill /f /im AutoHotKey*
+                set RUN_OPTIONS=${options}
 
-                  net use \\\\oscarmike.io\\BravoHotel_Distribution ",q4W!q" /user:wonderpeople
-
-                  set RUN_OPTIONS=${options}
-
-                  pushd \\Auto && start AutoHotkey.exe check_crash.ahk ${name}
-                  pushd ${drive}:\\Games\\RunGame_${stream} && RunGame_${stream}_Tqa.bat 
-                  exit /b 0
-                  """
+                pushd \\Auto && start AutoHotkey.exe check_crash.ahk ${name}
+                pushd ${drive}:\\Games\\RunGame_${stream} && RunGame_${stream}_Tqa.bat 
+                exit /b 0
+                """
               }
               stage('대기.') {
                 def msg = powershell(returnStatus: true, script: 'Wait-Process -Name "BravoHotel*"')
