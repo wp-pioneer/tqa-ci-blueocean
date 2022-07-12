@@ -37,7 +37,7 @@ def doDynamicParallelSteps(){
                 exit /b 0
                 """
               }
-              stage('copy pso') {
+              stage('PSO 수집') {
                 bat """
                 ${drive}:
                 pushd \\
@@ -46,7 +46,7 @@ def doDynamicParallelSteps(){
                 exit /b 0
                 """
               }
-              stage('sync editor') {
+              stage('에디터 업데이트') {
                 bat """
                 ${drive}
                 pushd \\Workspaces\\${WS}\\ZBravoHotel
@@ -54,7 +54,7 @@ def doDynamicParallelSteps(){
                 exit /b 0
                 """
               }
-              stage('merge cache') {
+              stage('PSO 머지') {
                 bat """
                 echo "copy prev pso cache"
                 copy ${drive}:\\Workspaces\\${WS}\\ZBravoHotel\\Build\\Windows\\PipelineCaches\\BravoHotelGame_PCD3D_SM5.stable.upipelinecache \\PSOCaching /y
@@ -73,7 +73,7 @@ def doDynamicParallelSteps(){
                 """
               }
 
-              stage('run client with merge command'){
+              stage('클라이언트 실행'){
                 bat """
                 set RUN_OPTIONS=-nostablepipelinecache -ExecCmds="Automation RunTests BravoHotel.RenderCore.SaveShaderPipelineCache"
                 pushd ${drive}:\\Games\\RunGame_${stream} && RunGame_${stream}_Tqa.bat
@@ -82,7 +82,7 @@ def doDynamicParallelSteps(){
                 """
               }
 
-              stage('wait client') {
+              stage('대기') {
                 sleep 10
                 bat """
                 :LOOP
@@ -97,7 +97,7 @@ def doDynamicParallelSteps(){
                 """
               }
 
-              stage('update cache') {
+              stage('P4업데이트') {
                 bat """
                 p4 set P4USER=jenkins_dll
                 p4 set P4PORT=p4.oscarmike.io:1666
