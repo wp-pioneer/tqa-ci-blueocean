@@ -15,9 +15,13 @@ def onlineNodeNames() {
 def doDynamicParallelSteps(){
 
   def list = onlineNodeNames();
+  def totalCount = list.size();
+  def inGameCount = 0;
+  def isStarted = 0;
 
-  def name = list[i] as String;
-
+  tests = [:]
+  for(int i=0; i < list.size(); i++) {
+    def name = list[i] as String;
     def drive = "C";
     def stream = "Main"
 
@@ -75,6 +79,7 @@ def doDynamicParallelSteps(){
         }
       }
     }
+  }
 
   parallel tests
 }
