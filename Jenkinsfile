@@ -16,99 +16,57 @@ def doDynamicParallelSteps(){
 
   def list = onlineNodeNames();
 
-  def stream = "Main"
-  def WS = "jenkins_dll_PSO_Main"
-  def drive = "C"
+  def name = list[i] as String;
 
-  tests = [:]
-  for(int i=0; i < list.size(); i++) {
-    def name = list[i] as String;
+    def drive = "C";
+    def stream = "Main"
+
     tests["${name}"] = {
       timeout(unit: 'MINUTES', time: 30 ) {
         node("${name}") {
           stage("${name}") {
             script {
-              stage('prepare') {
+              stage("준비") {
+                echo "starting.. ${params.AUTO_START}"
+                def computer = jenkins.model.Jenkins.instance.getComputer(env.NODE_NAME)
+
+                echo "info - ${computer.countBusy()}"
                 bat """
                 taskkill /f /im BravoHotel*
                 taskkill /f /im AutoHotKey*
-                net use \\\\oscarmike.io\\BravoHotel_Distribution ",q4W!q" /user:wonderpeople
-
+                net use
+                robocopy \\\\kate.oscarmike.io\\SharedDDC\\kate\\Auto c:\\Auto /MIR /s /TEE
+                robocopy \\\\kate.oscarmike.io\\SharedDDC\\kate\\Games ${drive}:\\Games /s /TEE 
                 exit /b 0
                 """
               }
-              stage('PSO 수집') {
-                bat """
-                ${drive}:
-                pushd \\
-                robocopy \\\\oscarmike.io\\Shared\\PSO\\${stream} \\PSOCaching /MIR /s /TEE
+              stage('실행') {
+                options += ' -ExecCmds="Automation RunTests BravoHotel.Utils.PSOCollectingTest"'
 
-                exit /b 0
-                """
-              }
-              stage('에디터 업데이트') {
-                bat """
-                ${drive}
-                pushd \\Workspaces\\${WS}\\ZBravoHotel
-                SyncLatestEditor.bat
-                exit /b 0
-                """
-              }
-              stage('PSO 머지') {
-                bat """
-                echo "copy prev pso cache"
-                copy ${drive}:\\Workspaces\\${WS}\\ZBravoHotel\\Build\\Windows\\PipelineCaches\\BravoHotelGame_PCD3D_SM5.stable.upipelinecache \\PSOCaching /y
 
-                echo "delete prev merged cache"
-                del ${drive}:\\PSOCaching\\BravoHotelGame_PCD3D_SM5.upipelinecache
+                  bat """
+                  taskkill /f /im BravoHotel*
+                  taskkill /f /im AutoHotKey*
 
-                echo "merge pso cache"
-                pushd \\Workspaces\\${WS}\\ZBravoHotel
-                ..\\Engine\\Binaries\\Win64\\UE4Editor-Cmd.exe BravoHotelGame -run=ShaderPipelineCacheTools Merge ${drive}:\\PSOCaching\\*.upipelineCache ${drive}:\\PSOCaching\\BravoHotelGame_PCD3D_SM5.upipelinecache
+                  net use \\\\oscarmike.io\\BravoHotel_Distribution ",q4W!q" /user:wonderpeople
 
-                echo "robocopy"
-                robocopy ${drive}:\\PSOCaching ${drive}:\\Games\\RunGame_${stream}\\BravoHotelGameApp\\MinApp\\WindowsClient\\BravoHotelGame\\Saved BravoHotelGame_PCD3D_SM5.upipelinecache /MOV
+                  set RUN_OPTIONS=${options}
 
-                exit /b 0
-                """
-              }
-
-              stage('클라이언트 실행'){
-                bat """
-                set RUN_OPTIONS=-nostablepipelinecache -ExecCmds="Automation RunTests BravoHotel.RenderCore.SaveShaderPipelineCache"
-                pushd ${drive}:\\Games\\RunGame_${stream} && RunGame_${stream}_Tqa.bat
-                exit /b 0
-
-                """
-              }
-
-              stage('대기') {
-                sleep 10
-                bat """
-                :LOOP
-                tasklist | find /i "BravoHotel" >nul 2>&1
-                IF ERRORLEVEL 1 (
+                  pushd \\Auto && start AutoHotkey.exe check_crash.ahk ${name}
+                  pushd ${drive}:\\Games\\RunGame_${stream} && RunGame_${stream}_Tqa.bat 
                   exit /b 0
-                ) ELSE (
-                  ECHO still running
-                  GOTO LOOP
-                )
-                exit /b 0
-                """
+                  """
               }
-
-              stage('P4업데이트') {
+              stage('대기.') {
+                def msg = powershell(returnStatus: true, script: 'Wait-Process -Name "BravoHotel*"')
+                println msg
+              }
+              stage('정리.') {
+                echo 'cleanup11'
                 bat """
-                p4 set P4USER=jenkins_dll
-                p4 set P4PORT=p4.oscarmike.io:1666
-                p4 set P4PASSWD=%P4_JENKINS_PW%
-                p4 set P4CHARSET=utf8
-                p4 set P4CLIENT=${WS}
-                p4 info
-                p4 sync -f ${drive}:\\Workspaces\\${WS}\\ZBravoHotel\\Build\\Windows\\PipelineCaches\\BravoHotelGame_PCD3D_SM5.stable.upipelinecache 
-                p4 edit ${drive}:\\Workspaces\\${WS}\\ZBravoHotel\\Build\\Windows\\PipelineCaches\\BravoHotelGame_PCD3D_SM5.stable.upipelinecache 
-                copy ${drive}:\\Games\\RunGame_${stream}\\BravoHotelGameApp\\MinApp\\WindowsClient\\BravoHotelGame\\Saved\\BravoHotelGame_PCD3D_SM5.upipelinecache ${drive}:\\Workspaces\\${WS}\\ZBravoHotel\\Build\\Windows\\PipelineCaches\\BravoHotelGame_PCD3D_SM5.stable.upipelinecache /y
-                p4 submit -d "PSO CACHE UPLOAD" 
+                taskkill /f /im BravoHotel*
+                taskkill /f /im AutoHotKey*
+                exit /b 0
                 """
               }
 
@@ -131,7 +89,7 @@ pipeline {
     preserveStashes(buildCount: 10)
   }
   triggers {
-    cron('TZ=Asia/Seoul\n30 10 * * *')
+    cron('TZ=Asia/Seoul\n0,30 14-21 * * *')
   }
   post {
     success {
