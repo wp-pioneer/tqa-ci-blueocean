@@ -75,7 +75,6 @@ def doDynamicParallelSteps(){
         }
       }
     }
-  }
 
   parallel tests
 }
