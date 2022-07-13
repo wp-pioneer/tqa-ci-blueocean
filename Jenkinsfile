@@ -3,9 +3,6 @@
 def onlineNodeNames() {
     String[] free_nodes = []
      for (Node node in jenkins.model.Jenkins.instance.nodes) {
-        if( node.name.contains("PSO") ) {
-          continue
-        }
          // Make sure slave is online
          if (node != null && node.toComputer() != null && node.toComputer().online) {
              free_nodes += node.name 
@@ -22,7 +19,7 @@ def doDynamicParallelSteps(){
   for(int i=0; i < list.size(); i++) {
     def name = list[i] as String;
     def drive = "D";
-    if( name.contains("HIGH") ) {
+    if( name.contains("HIGH") || name.contains("PSO")) {
       drive = "C";
     }
     tests["${name}"] = {
@@ -34,7 +31,7 @@ def doDynamicParallelSteps(){
                 echo 'running....'
                   bat """
                   net use \\\\oscarmike.io\\BravoHotel_Distribution ",q4W!q" /user:wonderpeople
-                  copy ${drive}:\\Games\\RunGame_Main\\BravoHotelGameApp\\MinApp\\WindowsClient\\BravoHotelGame\\Saved\\BravoHotelGame_PCD3D_SM5.upipelinecache \\\\oscarmike.io\\Shared\\PSO\\Main\\${name}.upipelineCache /y
+                  copy ${drive}:\\Games\\RunGame_Main\\BravoHotelGameApp\\MinApp\\WindowsClient\\BravoHotelGame\\Saved\\BravoHotelGame_PCD3D_SM5.upipelinecache \\\\oscarmike.io\\Shared\\PSO\\Main\\${name}.upipelinecache /y
                   exit /b 0
                   """
               }
