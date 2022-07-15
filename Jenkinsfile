@@ -63,8 +63,8 @@ def doDynamicParallelSteps(){
                 if(  ["HIGHTEST1","MIDDLETEST1","LOWTEST1"].contains(name) ) { 
                   isRunChangeSettings_GraphicOption = true 
                 }
-                def options = '-ApiPhase="dev2" -nosteam -ExecCmds="net.IpNetDriverReceiveThreadQueueMaxPackets 102400" -LogCmds="LogReplicationPingComponent All" -WithPingComponent -dx12 %SecurityOptions% ServicePlatform="internal"'
-                options += " -MonitoringEndThenRequestExit -performancemonitoring -nobenchmark -AutoJoinCmd=172.16.2.11:${port}?UserName=${name} 1 > nul" 
+                def options = '-ApiPhase="qa" -nosteam -ExecCmds="net.IpNetDriverReceiveThreadQueueMaxPackets 102400" -LogCmds="LogReplicationPingComponent All" -WithPingComponent -dx12 %SecurityOptions% ServicePlatform="internal"'
+                options += " -MonitoringEndThenRequestExit -performancemonitoring -nobenchmark -AutoJoinCmd=172.16.2.202:${port}?UserName=${name} 1 > nul" 
 
 
                 if( isRunChangeSettings_GraphicOption ) {
