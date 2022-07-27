@@ -62,7 +62,7 @@ def doDynamicParallelSteps(){
               stage('GetSecurityOptions') {
                 bat """
                   pushd ${drive}:\\Games\\RunGame_QA 
-                  call Scripts\\GetSecurityOptions_ScriptRun.bat PreStage Client Test
+                  set SecurityOptions=call Scripts\\GetSecurityOptions_ScriptRun.bat PreStage Client Test
                   echo SecurityOptions=%SecurityOptions%
                 """
               }
