@@ -59,13 +59,6 @@ def doDynamicParallelSteps(){
                 exit /b 0
                 """
               }
-              stage('GetSecurityOptions') {
-                bat """
-                  pushd ${drive}:\\Games\\RunGame_QA 
-                  set SecurityOptions=call Scripts\\GetSecurityOptions_ScriptRun.bat PreStage Client Test
-                  echo SecurityOptions=%SecurityOptions%
-                """
-              }
               stage('run') {
                 def port = 8801 + ( currentBuild.number % 3 ) 
 
@@ -91,6 +84,10 @@ def doDynamicParallelSteps(){
                   net use \\\\oscarmike.io\\BravoHotel_Distribution ",q4W!q" /user:wonderpeople
                   set USERNAME=${name}
                   set PORT=${port}
+                  
+                  pushd ${drive}:\\Games\\RunGame_QA 
+                  call Scripts\\GetSecurityOptions_ScriptRun.bat PreStage Client Test
+                  echo %SecurityOptions % 
 
                   set RUN_OPTIONS=${options} 
 
