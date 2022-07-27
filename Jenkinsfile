@@ -67,7 +67,7 @@ def doDynamicParallelSteps(){
                 if(  ["HIGHTEST1","MIDDLETEST1","LOWTEST1"].contains(name) ) { 
                   isRunChangeSettings_GraphicOption = true 
                 }
-                def options = '-ApiPhase="qa" -nosteam -ExecCmds="net.IpNetDriverReceiveThreadQueueMaxPackets 102400" -LogCmds="LogReplicationPingComponent All" -WithPingComponent -dx12 %SecurityOptions % ServicePlatform="internal"'
+                def options = '-ApiPhase="qa" -nosteam -ExecCmds="net.IpNetDriverReceiveThreadQueueMaxPackets 102400" -LogCmds="LogReplicationPingComponent All" -WithPingComponent -dx12 ServicePlatform="internal"'
                 options += " -MonitoringEndThenRequestExit -performancemonitoring -nobenchmark -AutoJoinCmd=172.16.2.202:${port}?UserName=${name} 1 > nul" 
 
 
@@ -89,7 +89,7 @@ def doDynamicParallelSteps(){
                   call Scripts\\GetSecurityOptions_ScriptRun.bat PreStage Client Test
                   echo %SecurityOptions % 
 
-                  set RUN_OPTIONS=${options} 
+                  set RUN_OPTIONS=${options} %SecurityOptions % 
 
                   pushd \\Auto && start AutoHotkey.exe check_crash.ahk ${name}
                   pushd ${drive}:\\Games\\RunGame_QA && RunGame_QA_Tqa.bat 
