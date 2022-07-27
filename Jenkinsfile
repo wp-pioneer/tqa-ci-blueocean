@@ -85,11 +85,7 @@ def doDynamicParallelSteps(){
                   set USERNAME=${name}
                   set PORT=${port}
                   
-                  pushd ${drive}:\\Games\\RunGame_QA 
-                  call Scripts\\GetSecurityOptions_ScriptRun.bat PreStage Client Test
-                  echo %SecurityOptions % 
-
-                  set RUN_OPTIONS=${options} %SecurityOptions % 
+                  set RUN_OPTIONS=${options} 
 
                   pushd \\Auto && start AutoHotkey.exe check_crash.ahk ${name}
                   pushd ${drive}:\\Games\\RunGame_QA && RunGame_QA_Tqa.bat 
